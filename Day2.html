@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 - SDLC & STLC | Shaivi Connect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .nav-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .day-progress {
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .day-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #4a5568;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: #4a5568;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .key-points {
+            background: rgba(72, 187, 120, 0.1);
+            border-left: 4px solid #48bb78;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .example-box {
+            background: rgba(237, 137, 54, 0.1);
+            border-left: 4px solid #ed8936;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .phase-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .phase-header {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-testing {
+            background: rgba(72, 187, 120, 0.1);
+            border-left: 4px solid #48bb78;
+        }
+
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-btn.disabled {
+            background: #e2e8f0;
+            color: #a0aec0;
+            pointer-events: none;
+        }
+
+        .progress-tracker {
+            text-align: center;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .warning-box {
+            background: rgba(245, 101, 101, 0.1);
+            border-left: 4px solid #f56565;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-header {
+                padding: 1rem;
+            }
+
+            .navigation-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <a href="index.html" class="back-btn">← Back to Challenge</a>
+            <div class="day-progress">Day 2 of 15</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-card">
+            <h1>Day 2</h1>
+            <p class="day-subtitle">Software Development Life Cycle (SDLC) & Software Testing Life Cycle (STLC)</p>
+
+            <h2>🎯 Learning Objectives</h2>
+            <ul>
+                <li>Understand the complete Software Development Life Cycle (SDLC)</li>
+                <li>Master the Software Testing Life Cycle (STLC) phases</li>
+                <li>Learn how SDLC and STLC work together</li>
+                <li>Identify testing activities in each SDLC phase</li>
+                <li>Understand entry and exit criteria for each phase</li>
+            </ul>
+
+            <h2>🔄 What is Software Development Life Cycle (SDLC)?</h2>
+            <p>
+                SDLC is a systematic process used by software development teams to design, develop, test, and deploy high-quality software. It provides a structured approach to software development with defined phases, activities, and deliverables.
+            </p>
+
+            <div class="highlight-box">
+                <h3>💡 Key Definition</h3>
+                <p><strong>SDLC</strong> is a framework that defines the complete process of software development from initial planning to deployment and maintenance. It ensures systematic development with quality checkpoints at each stage.</p>
+            </div>
+
+            <h2>📋 SDLC Phases in Detail</h2>
+
+            <div class="phase-card">
+                <div class="phase-header">1. 📋 Requirements Analysis & Planning</div>
+                <p><strong>Purpose:</strong> Gather and analyze business requirements</p>
+                <ul>
+                    <li><strong>Activities:</strong> Stakeholder meetings, requirement documentation, feasibility study</li>
+                    <li><strong>Deliverables:</strong> SRS (Software Requirements Specification), Project plan</li>
+                    <li><strong>Duration:</strong> 10-15% of total project time</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header">2. 🎨 System Design</div>
+                <p><strong>Purpose:</strong> Create technical architecture and design specifications</p>
+                <ul>
+                    <li><strong>Activities:</strong> High-level design, detailed design, database design, UI mockups</li>
+                    <li><strong>Deliverables:</strong> System design document, Architecture diagram, Database schema</li>
+                    <li><strong>Duration:</strong> 15-20% of total project time</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header">3. 💻 Implementation/Coding</div>
+                <p><strong>Purpose:</strong> Convert design into working software code</p>
+                <ul>
+                    <li><strong>Activities:</strong> Code development, code reviews, unit testing, code documentation</li>
+                    <li><strong>Deliverables:</strong> Source code, Unit test cases, Code review reports</li>
+                    <li><strong>Duration:</strong> 40-50% of total project time</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header">4. 🧪 Testing</div>
+                <p><strong>Purpose:</strong> Identify and fix defects to ensure quality</p>
+                <ul>
+                    <li><strong>Activities:</strong> Test planning, test execution, defect reporting, regression testing</li>
+                    <li><strong>Deliverables:</strong> Test plans, test cases, defect reports, test summary report</li>
+                    <li><strong>Duration:</strong> 20-25% of total project time</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header">5. 🚀 Deployment</div>
+                <p><strong>Purpose:</strong> Release software to production environment</p>
+                <ul>
+                    <li><strong>Activities:</strong> Production deployment, user training, go-live support</li>
+                    <li><strong>Deliverables:</strong> Deployment guide, User manuals, Release notes</li>
+                    <li><strong>Duration:</strong> 5-10% of total project time</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header">6. 🔧 Maintenance</div>
+                <p><strong>Purpose:</strong> Ongoing support and enhancements</p>
+                <ul>
+                    <li><strong>Activities:</strong> Bug fixes, performance optimization, feature enhancements</li>
+                    <li><strong>Deliverables:</strong> Maintenance reports, Updated documentation, Patches</li>
+                    <li><strong>Duration:</strong> Ongoing throughout software lifecycle</li>
+                </ul>
+            </div>
+
+            <h2>🧪 What is Software Testing Life Cycle (STLC)?</h2>
+            <p>
+                STLC is a systematic approach to testing that defines specific phases, activities, and deliverables for the testing process. It runs parallel to SDLC and ensures comprehensive testing coverage.
+            </p>
+
+            <div class="key-points">
+                <h3>🎯 STLC Characteristics</h3>
+                <ul>
+                    <li>Systematic and well-defined testing process</li>
+                    <li>Each phase has specific entry and exit criteria</li>
+                    <li>Deliverables are clearly defined for each phase</li>
+                    <li>Ensures comprehensive test coverage</li>
+                    <li>Provides traceability and accountability</li>
+                </ul>
+            </div>
+
+            <h2>📊 STLC Phases in Detail</h2>
+
+            <div class="phase-card phase-testing">
+                <div class="phase-header">Phase 1: 📋 Requirement Analysis</div>
+                <p><strong>Entry Criteria:</strong> Requirements document available</p>
+                <p><strong>Activities:</strong></p>
+                <ul>
+                    <li>Study and analyze requirements</li>
+                    <li>Identify testable requirements</li>
+                    <li>Prepare Requirement Traceability Matrix (RTM)</li>
+                    <li>Identify test environment requirements</li>
+                </ul>
+                <p><strong>Deliverables:</strong> RTM, Test automation feasibility report</p>
+                <p><strong>Exit Criteria:</strong> RTM approved, Test plan signed off</p>
+            </div>
+
+            <div class="phase-card phase-testing">
+                <div class="phase-header">Phase 2: 📝 Test Planning</div>
+                <p><strong>Entry Criteria:</strong> Requirements analysis complete</p>
+                <p><strong>Activities:</strong></p>
+                <ul>
+                    <li>Create test strategy and test plan</li>
+                    <li>Estimate testing effort and timeline</li>
+                    <li>Identify testing tools and resources</li>
+                    <li>Define test approach and scope</li>
+                </ul>
+                <p><strong>Deliverables:</strong> Test Plan, Test Strategy document</p>
+                <p><strong>Exit Criteria:</strong> Test plan reviewed and approved</p>
+            </div>
+
+            <div class="phase-card phase-testing">
+                <div class="phase-header">Phase 3: ✍️ Test Case Development</div>
+                <p><strong>Entry Criteria:</strong> Test plan approved</p>
+                <p><strong>Activities:</strong></p>
+                <ul>
+                    <li>Write detailed test cases and test scenarios</li>
+                    <li>Create test data and test scripts</li>
+                    <li>Review and baseline test cases</li>
+                    <li>Prepare test environment setup requirements</li>
+                </ul>
+                <p><strong>Deliverables:</strong> Test cases, Test data, Test scripts</p>
+                <p><strong>Exit Criteria:</strong> Test cases reviewed and approved</p>
+            </div>
+
+            <div class="phase-card phase-testing">
+                <div class="phase-header">Phase 4: 🛠️ Test Environment Setup</div>
+                <p><strong>Entry Criteria:</strong> System design and architecture available</p>
+                <p><strong>Activities:</strong></p>
+                <ul>
+                    <li>Set up test environment as per requirements</li>
+                    <li>Perform smoke testing on the environment</li>
+                    <li>Prepare test data in the environment</li>
+                    <li>Execute readiness check</li>
+                </ul>
+                <p><strong>Deliverables:</strong> Environment setup document, Smoke test results</p>
+                <p><strong>Exit Criteria:</strong> Test environment ready for execution</p>
+            </div>
+
+            <div class="phase-card phase-testing">
+                <div class="phase-header">Phase 5: ▶️ Test Execution</div>
+                <p><strong>Entry Criteria:</strong> Test environment ready, Test cases approved</p>
+                <p><strong>Activities:</strong></p>
+                <ul>
+                    <li>Execute test cases as per test plan</li>
+                    <li>Log defects for failed test cases</li>
+                    <li>Map defects to test cases in RTM</li>
+                    <li>Re-execute test cases after bug fixes</li>
+                </ul>
+                <p><strong>Deliverables:</strong> Test execution report, Defect report</p>
+                <p><strong>Exit Criteria:</strong> All tests executed, critical bugs fixed</p>
+            </div>
+
+            <div class="phase-card phase-testing">
+                <div class="phase-header">Phase 6: 🎯 Test Closure</div>
+                <p><strong>Entry Criteria:</strong> Test execution complete, exit criteria met</p>
+                <p><strong>Activities:</strong></p>
+                <ul>
+                    <li>Evaluate test completion based on coverage</li>
+                    <li>Prepare test summary report</li>
+                    <li>Document lessons learned</li>
+                    <li>Archive test artifacts</li>
+                </ul>
+                <p><strong>Deliverables:</strong> Test closure report, Test metrics</p>
+                <p><strong>Exit Criteria:</strong> Test summary report signed off</p>
+            </div>
+
+            <h2>🔄 SDLC vs STLC Comparison</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Aspect</th>
+                    <th>SDLC</th>
+                    <th>STLC</th>
+                </tr>
+                <tr>
+                    <td><strong>Purpose</strong></td>
+                    <td>Develop quality software</td>
+                    <td>Ensure software quality through testing</td>
+                </tr>
+                <tr>
+                    <td><strong>Focus</strong></td>
+                    <td>Complete software development</td>
+                    <td>Testing activities only</td>
+                </tr>
+                <tr>
+                    <td><strong>Phases</strong></td>
+                    <td>6 phases (Planning to Maintenance)</td>
+                    <td>6 phases (Requirement Analysis to Closure)</td>
+                </tr>
+                <tr>
+                    <td><strong>Timeline</strong></td>
+                    <td>Entire project duration</td>
+                    <td>Testing phase duration</td>
+                </tr>
+                <tr>
+                    <td><strong>Team</strong></td>
+                    <td>Development team, analysts, architects</td>
+                    <td>Testing team, test leads, testers</td>
+                </tr>
+                <tr>
+                    <td><strong>Deliverables</strong></td>
+                    <td>Working software application</td>
+                    <td>Test artifacts, defect reports</td>
+                </tr>
+            </table>
+
+            <h2>🔗 How SDLC and STLC Work Together</h2>
+
+            <div class="example-box">
+                <h3>🤝 Integration Points</h3>
+                <ul>
+                    <li><strong>Requirements Phase:</strong> STLC starts requirement analysis while SDLC gathers requirements</li>
+                    <li><strong>Design Phase:</strong> Test planning and design review happens parallel to system design</li>
+                    <li><strong>Implementation:</strong> Test case development occurs while coding is in progress</li>
+                    <li><strong>Testing Phase:</strong> STLC execution phase aligns with SDLC testing phase</li>
+                    <li><strong>Deployment:</strong> User Acceptance Testing supports production deployment</li>
+                </ul>
+            </div>
+
+            <h2>⚠️ Common Challenges & Solutions</h2>
+
+            <div class="warning-box">
+                <h3>🚨 Common Pitfalls</h3>
+                <ul>
+                    <li><strong>Late Testing Start:</strong> Testing begins only after development complete</li>
+                    <li><strong>Insufficient Documentation:</strong> Poor requirement documentation affects test quality</li>
+                    <li><strong>Environment Issues:</strong> Unstable test environments delay testing</li>
+                    <li><strong>Communication Gap:</strong> Poor coordination between dev and test teams</li>
+                </ul>
+            </div>
+
+            <div class="key-points">
+                <h3>✅ Best Practices</h3>
+                <ul>
+                    <li><strong>Start Early:</strong> Begin testing activities from requirement phase</li>
+                    <li><strong>Clear Documentation:</strong> Maintain detailed test artifacts</li>
+                    <li><strong>Regular Communication:</strong> Daily standups and review meetings</li>
+                    <li><strong>Risk-Based Testing:</strong> Focus on high-risk areas first</li>
+                    <li><strong>Continuous Improvement:</strong> Learn from each project cycle</li>
+                </ul>
+            </div>
+
+            <h2>📊 Entry and Exit Criteria Examples</h2>
+
+            <div class="highlight-box">
+                <h3>🚪 Test Execution Phase Example</h3>
+                <p><strong>Entry Criteria:</strong></p>
+                <ul>
+                    <li>Test environment is set up and stable</li>
+                    <li>Test cases are reviewed and approved</li>
+                    <li>Test data is prepared and loaded</li>
+                    <li>Application build is deployed and smoke tested</li>
+                </ul>
+                
+                <p><strong>Exit Criteria:</strong></p>
+                <ul>
+                    <li>All planned test cases are executed</li>
+                    <li>90% of test cases are passed</li>
+                    <li>No high/critical severity bugs are open</li>
+                    <li>Test execution report is prepared</li>
+                </ul>
+            </div>
+
+            <h2>📈 Industry Statistics</h2>
+            
+            <div class="example-box">
+                <h3>📊 SDLC & STLC Facts</h3>
+                <ul>
+                    <li>Testing typically consumes 25-40% of total project effort</li>
+                    <li>Requirements defects cost 100x more to fix in production vs requirement phase</li>
+                    <li>Projects following structured SDLC have 70% higher success rate</li>
+                    <li>Early testing (shift-left) reduces overall project cost by 20-30%</li>
+                    <li>Poor requirements cause 56% of project failures</li>
+                </ul>
+            </div>
+
+            <h2>📝 Today's Comprehensive Tasks</h2>
+
+            <div class="highlight-box">
+                <h3>✏️ Task 1: SDLC Mapping</h3>
+                <p>Think of any software you've used recently (mobile app, website, etc.):</p>
+                <ol>
+                    <li><strong>Requirements:</strong> What user needs does this software fulfill?</li>
+                    <li><strong>Design:</strong> Identify 3 design elements (UI, database, architecture)</li>
+                    <li><strong>Implementation:</strong> What programming languages might be used?</li>
+                    <li><strong>Testing:</strong> List 5 things that would need testing</li>
+                    <li><strong>Deployment:</strong> How do users access this software?</li>
+                    <li><strong>Maintenance:</strong> What updates have you seen recently?</li>
+                </ol>
+            </div>
+
+            <div class="key-points">
+                <h3>✏️ Task 2: Create Your First Test Plan Outline</h3>
+                <p>For a simple "Contact Us" form on a website, create:</p>
+                <ul>
+                    <li><strong>Test Scope:</strong> What will you test?</li>
+                    <li><strong>Test Approach:</strong> How will you test? (manual/automated)</li>
+                    <li><strong>Entry Criteria:</strong> When can testing start?</li>
+                    <li><strong>Exit Criteria:</strong> When is testing complete?</li>
+                    <li><strong>Test Deliverables:</strong> What documents will you create?</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h3>✏️ Task 3: STLC Phase Identification</h3>
+                <p>For each STLC phase, write one activity you would perform as a manual tester:</p>
+                <ol>
+                    <li><strong>Requirement Analysis:</strong> ________________</li>
+                    <li><strong>Test Planning:</strong> ________________</li>
+                    <li><strong>Test Case Development:</strong> ________________</li>
+                    <li><strong>Test Environment Setup:</strong> ________________</li>
+                    <li><strong>Test Execution:</strong> ________________</li>
+                    <li><strong>Test Closure:</strong> ________________</li>
+                </ol>
+            </div>
+
+            <h2>📚 Recommended Resources</h2>
+            <ul>
+                <li><strong>Reading:</strong> "Software Testing Life Cycle" by Rex Black</li>
+                <li><strong>Templates:</strong> IEEE 829 Test Plan Template</li>
+                <li><strong>Tools:</strong> TestRail, Zephyr for test management</li>
+                <li><strong>Practice:</strong> Create RTM for a simple application</li>
+            </ul>
+
+            <h2>🚀 What's Next?</h2>
+            <p>Tomorrow, we'll explore <strong>Software Development Models</strong> - learning about Waterfall, Agile, V-Model, and how testing approaches differ in each model.</p>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="navigation-footer">
+            <a href="Day1.html" class="nav-btn">← Previous Day</a>
+            <div class="progress-tracker">
+                <strong>Progress:</strong> 2/15 Days Complete
+            </div>
+            <a href="Day3.html" class="nav-btn">Next Day →</a>
+        </div>
+    </div>
+</body>
+</html>
