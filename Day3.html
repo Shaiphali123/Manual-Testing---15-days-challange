@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 - Software Development Models | Shaivi Connect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .nav-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .day-progress {
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .day-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #4a5568;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: #4a5568;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .key-points {
+            background: rgba(72, 187, 120, 0.1);
+            border-left: 4px solid #48bb78;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .example-box {
+            background: rgba(237, 137, 54, 0.1);
+            border-left: 4px solid #ed8936;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: rgba(245, 101, 101, 0.1);
+            border-left: 4px solid #f56565;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .model-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .model-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .waterfall { border-top-color: #3182ce; }
+        .vmodel { border-top-color: #38a169; }
+        .agile { border-top-color: #d69e2e; }
+        .spiral { border-top-color: #805ad5; }
+        .rad { border-top-color: #e53e3e; }
+        .prototype { border-top-color: #dd6b20; }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .pros, .cons {
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .pros {
+            background: rgba(72, 187, 120, 0.1);
+            border-left: 3px solid #48bb78;
+        }
+
+        .cons {
+            background: rgba(245, 101, 101, 0.1);
+            border-left: 3px solid #f56565;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1rem 0 1rem 3rem;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .progress-tracker {
+            text-align: center;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-header {
+                padding: 1rem;
+            }
+
+            .navigation-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <a href="index.html" class="back-btn">← Back to Challenge</a>
+            <div class="day-progress">Day 3 of 15</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-card">
+            <h1>Day 3</h1>
+            <p class="day-subtitle">Software Development Models</p>
+
+            <h2>🎯 Learning Objectives</h2>
+            <ul>
+                <li>Understand different software development models and their characteristics</li>
+                <li>Learn how testing approaches vary across development models</li>
+                <li>Compare advantages and disadvantages of each model</li>
+                <li>Identify which model suits different project scenarios</li>
+                <li>Understand the role of testing in each development model</li>
+            </ul>
+
+            <h2>🏗️ What are Software Development Models?</h2>
+            <p>
+                Software Development Models are structured approaches that define the process, activities, and tasks involved in the development of software systems. Each model provides a framework for organizing the software development process with specific phases, deliverables, and methodologies.
+            </p>
+
+            <div class="highlight-box">
+                <h3>💡 Key Definition</h3>
+                <p><strong>Software Development Model</strong> is a conceptual framework that describes the activities performed at each stage of software development and how these activities relate to each other logically and chronologically.</p>
+            </div>
+
+            <h2>📚 Why Different Models Exist?</h2>
+            <ul>
+                <li><strong>Project Requirements:</strong> Different projects have different needs</li>
+                <li><strong>Team Size & Experience:</strong> Model choice depends on team capabilities</li>
+                <li><strong>Timeline Constraints:</strong> Some models are faster than others</li>
+                <li><strong>Risk Tolerance:</strong> Different models handle risks differently</li>
+                <li><strong>Customer Involvement:</strong> Some models require more client participation</li>
+                <li><strong>Budget Constraints:</strong> Cost implications vary by model</li>
+            </ul>
+
+            <h2>🌊 1. Waterfall Model</h2>
+            <div class="model-card waterfall">
+                <div class="model-header">🌊 Waterfall Model - Sequential Approach</div>
+                
+                <p><strong>Overview:</strong> The Waterfall model is a linear sequential approach where each phase must be completed before the next phase begins. It's like a waterfall - once you move to the next level, you can't go back.</p>
+
+                <h3>📋 Phases:</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>1. Requirements Analysis</strong> - Gather and document all requirements
+                    </div>
+                    <div class="timeline-item">
+                        <strong>2. System Design</strong> - Create architectural and detailed design
+                    </div>
+                    <div class="timeline-item">
+                        <strong>3. Implementation</strong> - Code development based on design
+                    </div>
+                    <div class="timeline-item">
+                        <strong>4. Integration & Testing</strong> - Combine modules and test system
+                    </div>
+                    <div class="timeline-item">
+                        <strong>5. Deployment</strong> - Release to production environment
+                    </div>
+                    <div class="timeline-item">
+                        <strong>6. Maintenance</strong> - Ongoing support and bug fixes
+                    </div>
+                </div>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Advantages:</h4>
+                        <ul>
+                            <li>Simple and easy to understand</li>
+                            <li>Well-defined phases and deliverables</li>
+                            <li>Easy to manage and track progress</li>
+                            <li>Good for small projects with clear requirements</li>
+                            <li>Detailed documentation</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Disadvantages:</h4>
+                        <ul>
+                            <li>No going back to previous phases</li>
+                            <li>Testing happens very late</li>
+                            <li>Not suitable for complex projects</li>
+                            <li>Poor handling of requirement changes</li>
+                            <li>Customer sees product only at the end</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🧪 Testing in Waterfall:</h4>
+                    <ul>
+                        <li>Testing is a separate phase after development</li>
+                        <li>Test planning starts during design phase</li>
+                        <li>Heavy documentation and formal test processes</li>
+                        <li>Defects found late are expensive to fix</li>
+                        <li>Emphasis on comprehensive test coverage</li>
+                    </ul>
+                </div>
+
+                <p><strong>Best Suited For:</strong> Small projects, stable requirements, government projects, projects with clear specifications.</p>
+            </div>
+
+            <h2>✅ 2. V-Model (Verification & Validation)</h2>
+            <div class="model-card vmodel">
+                <div class="model-header">✅ V-Model - Testing Integrated</div>
+                
+                <p><strong>Overview:</strong> The V-Model is an extension of Waterfall model where testing activities are planned in parallel with development phases. It emphasizes verification and validation at each stage.</p>
+
+                <h3>🔄 V-Model Structure:</h3>
+                <p>The V-Model forms a "V" shape where:</p>
+                <ul>
+                    <li><strong>Left Side (Verification):</strong> Development phases with corresponding test planning</li>
+                    <li><strong>Right Side (Validation):</strong> Testing phases that validate each development phase</li>
+                    <li><strong>Bottom:</strong> Coding phase connecting both sides</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>📊 V-Model Mapping:</h4>
+                    <ul>
+                        <li><strong>Requirements Analysis</strong> ↔ <strong>Acceptance Testing</strong></li>
+                        <li><strong>System Design</strong> ↔ <strong>System Testing</strong></li>
+                        <li><strong>Detailed Design</strong> ↔ <strong>Integration Testing</strong></li>
+                        <li><strong>Module Design</strong> ↔ <strong>Unit Testing</strong></li>
+                    </ul>
+                </div>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Advantages:</h4>
+                        <ul>
+                            <li>Testing activities start early</li>
+                            <li>Clear test phases for each development phase</li>
+                            <li>High chance of success due to early verification</li>
+                            <li>Good for projects with stable requirements</li>
+                            <li>Defects found early are cheaper to fix</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Disadvantages:</h4>
+                        <ul>
+                            <li>Rigid and less flexible</li>
+                            <li>Not suitable for object-oriented projects</li>
+                            <li>Poor model for long and ongoing projects</li>
+                            <li>Requirements must be clear from beginning</li>
+                            <li>No early prototypes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🧪 Testing in V-Model:</h4>
+                    <ul>
+                        <li>Test planning happens parallel to each development phase</li>
+                        <li>Each development phase has corresponding test phase</li>
+                        <li>Strong emphasis on verification and validation</li>
+                        <li>Test cases designed before coding begins</li>
+                        <li>Both static and dynamic testing approaches</li>
+                    </ul>
+                </div>
+
+                <p><strong>Best Suited For:</strong> Systems with well-defined requirements, safety-critical applications, medical software, aerospace projects.</p>
+            </div>
+
+            <h2>🔄 3. Agile Model</h2>
+            <div class="model-card agile">
+                <div class="model-header">🔄 Agile Model - Iterative & Collaborative</div>
+                
+                <p><strong>Overview:</strong> Agile is an iterative and incremental approach that emphasizes collaboration, flexibility, and rapid delivery of working software. It breaks the project into small iterations called sprints.</p>
+
+                <h3>🏃‍♂️ Agile Principles:</h3>
+                <ul>
+                    <li><strong>Individuals and interactions</strong> over processes and tools</li>
+                    <li><strong>Working software</strong> over comprehensive documentation</li>
+                    <li><strong>Customer collaboration</strong> over contract negotiation</li>
+                    <li><strong>Responding to change</strong> over following a plan</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>📅 Agile Sprint Cycle (2-4 weeks):</h4>
+                    <ol>
+                        <li><strong>Sprint Planning:</strong> Define what to build</li>
+                        <li><strong>Daily Standups:</strong> Team synchronization</li>
+                        <li><strong>Development & Testing:</strong> Build and test features</li>
+                        <li><strong>Sprint Review:</strong> Demo completed features</li>
+                        <li><strong>Sprint Retrospective:</strong> Improve processes</li>
+                    </ol>
+                </div>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Advantages:</h4>
+                        <ul>
+                            <li>Quick delivery of working software</li>
+                            <li>Flexible to changing requirements</li>
+                            <li>Continuous customer feedback</li>
+                            <li>Early and frequent testing</li>
+                            <li>Better team collaboration</li>
+                            <li>Risk reduction through iterations</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Disadvantages:</h4>
+                        <ul>
+                            <li>Less predictable outcomes</li>
+                            <li>Requires experienced team</li>
+                            <li>Documentation can be insufficient</li>
+                            <li>Customer must be actively involved</li>
+                            <li>Can be challenging for large teams</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🧪 Testing in Agile:</h4>
+                    <ul>
+                        <li><strong>Continuous Testing:</strong> Testing throughout the sprint</li>
+                        <li><strong>Test-Driven Development (TDD):</strong> Write tests before code</li>
+                        <li><strong>Automated Testing:</strong> Heavy emphasis on automation</li>
+                        <li><strong>Exploratory Testing:</strong> Unscripted testing approaches</li>
+                        <li><strong>Acceptance Criteria:</strong> Clear definition of done</li>
+                        <li><strong>Regression Testing:</strong> Continuous regression testing</li>
+                    </ul>
+                </div>
+
+                <p><strong>Best Suited For:</strong> Web applications, mobile apps, startups, projects with evolving requirements, innovative products.</p>
+            </div>
+
+            <h2>🌀 4. Spiral Model</h2>
+            <div class="model-card spiral">
+                <div class="model-header">🌀 Spiral Model - Risk-Driven Approach</div>
+                
+                <p><strong>Overview:</strong> The Spiral Model combines iterative development with systematic aspects of waterfall model. It emphasizes risk analysis and allows for incremental releases of the product.</p>
+
+                <h3>🔄 Four Phases per Iteration:</h3>
+                <ol>
+                    <li><strong>Planning:</strong> Determine objectives, alternatives, constraints</li>
+                    <li><strong>Risk Analysis:</strong> Analyze alternatives and identify/resolve risks</li>
+                    <li><strong>Engineering:</strong> Develop and test the product</li>
+                    <li><strong>Evaluation:</strong> Customer evaluates results and plans next iteration</li>
+                </ol>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Advantages:</h4>
+                        <ul>
+                            <li>Strong emphasis on risk analysis</li>
+                            <li>Good for large, critical projects</li>
+                            <li>Software produced early in cycle</li>
+                            <li>Flexibility in requirements</li>
+                            <li>Customer sees product early</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Disadvantages:</h4>
+                        <ul>
+                            <li>Expensive and complex</li>
+                            <li>Success depends on risk analysis</li>
+                            <li>Not suitable for small projects</li>
+                            <li>Time-consuming</li>
+                            <li>Requires risk assessment expertise</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🧪 Testing in Spiral:</h4>
+                    <ul>
+                        <li>Testing occurs in each spiral iteration</li>
+                        <li>Risk-based testing approach</li>
+                        <li>Incremental testing with each spiral</li>
+                        <li>Prototyping helps validate requirements</li>
+                        <li>Continuous risk assessment affects testing focus</li>
+                    </ul>
+                </div>
+
+                <p><strong>Best Suited For:</strong> Large-scale systems, high-risk projects, research projects, projects with unclear requirements.</p>
+            </div>
+
+            <h2>⚡ 5. RAD Model (Rapid Application Development)</h2>
+            <div class="model-card rad">
+                <div class="model-header">⚡ RAD Model - Fast Development</div>
+                
+                <p><strong>Overview:</strong> RAD emphasizes rapid prototyping and quick feedback over lengthy development and testing cycles. It uses components and tools to accelerate development.</p>
+
+                <h3>🏃 RAD Phases:</h3>
+                <ol>
+                    <li><strong>Requirements Planning:</strong> Business requirements analysis</li>
+                    <li><strong>User Design:</strong> Build prototypes and get user feedback</li>
+                    <li><strong>Construction:</strong> Actual system development with reusable components</li>
+                    <li><strong>Cutover:</strong> Testing, training, and system implementation</li>
+                </ol>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Advantages:</h4>
+                        <ul>
+                            <li>Fast development and delivery</li>
+                            <li>Flexible and adaptable</li>
+                            <li>Component reusability</li>
+                            <li>Quick user feedback</li>
+                            <li>Reduced development time</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Disadvantages:</h4>
+                        <ul>
+                            <li>Not suitable for all types of projects</li>
+                            <li>Requires skilled developers</li>
+                            <li>Customer involvement essential</li>
+                            <li>Not suitable for large teams</li>
+                            <li>Management complexity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🧪 Testing in RAD:</h4>
+                    <ul>
+                        <li>Integrated testing throughout development</li>
+                        <li>Heavy emphasis on user acceptance testing</li>
+                        <li>Component testing due to reusability</li>
+                        <li>Quick feedback cycles with stakeholders</li>
+                        <li>Focus on functional rather than performance testing</li>
+                    </ul>
+                </div>
+
+                <p><strong>Best Suited For:</strong> Business applications, projects with tight deadlines, systems using existing components.</p>
+            </div>
+
+            <h2>🔧 6. Prototype Model</h2>
+            <div class="model-card prototype">
+                <div class="model-header">🔧 Prototype Model - Build to Learn</div>
+                
+                <p><strong>Overview:</strong> The Prototype Model creates early versions of the software to help understand requirements and get user feedback before building the final system.</p>
+
+                <h3>🛠️ Types of Prototypes:</h3>
+                <ul>
+                    <li><strong>Throwaway Prototype:</strong> Built to understand requirements, then discarded</li>
+                    <li><strong>Evolutionary Prototype:</strong> Gradually developed into final system</li>
+                    <li><strong>Incremental Prototype:</strong> Multiple prototypes built for different parts</li>
+                </ul>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Advantages:</h4>
+                        <ul>
+                            <li>Better requirement understanding</li>
+                            <li>Early user feedback</li>
+                            <li>Reduced risk of failure</li>
+                            <li>User satisfaction improves</li>
+                            <li>Missing functionality identified early</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Disadvantages:</h4>
+                        <ul>
+                            <li>Time and cost increase</li>
+                            <li>Customer may think prototype is final product</li>
+                            <li>Excessive changes in requirements</li>
+                            <li>Poor documentation</li>
+                            <li>May not be scalable</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🧪 Testing in Prototype:</h4>
+                    <ul>
+                        <li>User acceptance testing on prototypes</li>
+                        <li>Feedback-driven test improvements</li>
+                        <li>Usability testing emphasis</li>
+                        <li>Requirements validation through testing</li>
+                        <li>Iterative testing and refinement</li>
+                    </ul>
+                </div>
+
+                <p><strong>Best Suited For:</strong> Projects with unclear requirements, user interface development, innovative products.</p>
+            </div>
+
+            <h2>📊 Model Comparison Summary</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Aspect</th>
+                    <th>Waterfall</th>
+                    <th>V-Model</th>
+                    <th>Agile</th>
+                    <th>Spiral</th>
+                </tr>
+                <tr>
+                    <td><strong>Flexibility</strong></td>
+                    <td>Low</td>
+                    <td>Low</td>
+                    <td>High</td>
+                    <td>Medium</td>
+                </tr>
+                <tr>
+                    <td><strong>Risk</strong></td>
+                    <td>High</td>
+                    <td>Medium</td>
+                    <td>Low</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td><strong>Customer Involvement</strong></td>
+                    <td>Low</td>
+                    <td>Medium</td>
+                    <td>High</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td><strong>Documentation</strong></td>
+                    <td>Heavy</td>
+                    <td>Heavy</td>
+                    <td>Light</td>
+                    <td>Medium</td>
+                </tr>
+                <tr>
+                    <td><strong>Testing Start</strong></td>
+                    <td>After Development</td>
+                    <td>Parallel to Development</td>
+                    <td>Throughout Development</td>
+                    <td>Each Iteration</td>
+                </tr>
+                <tr>
+                    <td><strong>Project Size</strong></td>
+                    <td>Small-Medium</td>
+                    <td>Medium-Large</td>
+                    <td>Small-Medium</td>
+                    <td>Large</td>
+                </tr>
+                <tr>
+                    <td><strong>Cost</strong></td>
+                    <td>Low</td>
+                    <td>Medium</td>
+                    <td>Medium</td>
+                    <td>High</td>
+                </tr>
+            </table>
+
+            <h2>🎯 Choosing the Right Model</h2>
+
+            <div class="highlight-box">
+                <h3>💡 Decision Factors</h3>
+                <ul>
+                    <li><strong>Project Size:</strong> Small projects → Waterfall/Agile, Large → Spiral/V-Model</li>
+                    <li><strong>Requirements Clarity:</strong> Clear → Waterfall/V-Model, Unclear → Agile/Prototype</li>
+                    <li><strong>Risk Level:</strong> High-risk projects →
