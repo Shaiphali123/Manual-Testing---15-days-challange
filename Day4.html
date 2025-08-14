@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4 - Agile Testing Concepts | Shaivi Connect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .nav-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .day-progress {
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .day-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #4a5568;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: #4a5568;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .key-points {
+            background: rgba(72, 187, 120, 0.1);
+            border-left: 4px solid #48bb78;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .example-box {
+            background: rgba(237, 137, 54, 0.1);
+            border-left: 4px solid #ed8936;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: rgba(245, 101, 101, 0.1);
+            border-left: 4px solid #f56565;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .agile-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-top: 4px solid #38a169;
+        }
+
+        .scrum-section {
+            border-top-color: #3182ce;
+        }
+
+        .kanban-section {
+            border-top-color: #d69e2e;
+        }
+
+        .testing-pyramid {
+            border-top-color: #805ad5;
+        }
+
+        .concept-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .sprint-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .sprint-day {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .sprint-day:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .day-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .day-activity {
+            font-size: 0.9rem;
+            color: #4a5568;
+            margin-top: 0.5rem;
+        }
+
+        .user-story-card {
+            background: #f7fafc;
+            border: 2px dashed #667eea;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .story-format {
+            font-style: italic;
+            color: #2d3748;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .acceptance-criteria {
+            background: rgba(72, 187, 120, 0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .role-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .role-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .progress-tracker {
+            text-align: center;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-header {
+                padding: 1rem;
+            }
+
+            .navigation-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sprint-timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <a href="index.html" class="back-btn">← Back to Challenge</a>
+            <div class="day-progress">Day 4 of 15</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-card">
+            <h1>Day 4</h1>
+            <p class="day-subtitle">Agile Testing Concepts</p>
+
+            <h2>🎯 Learning Objectives</h2>
+            <ul>
+                <li>Understand Agile methodology and its core principles</li>
+                <li>Learn about Scrum framework and testing in Scrum</li>
+                <li>Master User Stories, Acceptance Criteria, and Definition of Done</li>
+                <li>Explore different Agile testing approaches and techniques</li>
+                <li>Understand the role of a tester in Agile teams</li>
+            </ul>
+
+            <h2>🚀 What is Agile?</h2>
+            <p>
+                Agile is a software development methodology that emphasizes iterative development, team collaboration, customer feedback, and responding to change. Unlike traditional waterfall methods, Agile delivers working software in short iterations called sprints.
+            </p>
+
+            <div class="highlight-box">
+                <h3>💡 Agile Manifesto Values</h3>
+                <ul>
+                    <li><strong>Individuals and interactions</strong> over processes and tools</li>
+                    <li><strong>Working software</strong> over comprehensive documentation</li>
+                    <li><strong>Customer collaboration</strong> over contract negotiation</li>
+                    <li><strong>Responding to change</strong> over following a plan</li>
+                </ul>
+            </div>
+
+            <h2>📋 Agile Principles (12 Key Principles)</h2>
+            <ol>
+                <li>Our highest priority is to satisfy the customer through early and continuous delivery</li>
+                <li>Welcome changing requirements, even late in development</li>
+                <li>Deliver working software frequently (weeks rather than months)</li>
+                <li>Business people and developers must work together daily</li>
+                <li>Build projects around motivated individuals and trust them</li>
+                <li>Face-to-face conversation is the most efficient communication</li>
+                <li>Working software is the primary measure of progress</li>
+                <li>Sustainable development pace for teams</li>
+                <li>Continuous attention to technical excellence and good design</li>
+                <li>Simplicity - maximizing the amount of work not done</li>
+                <li>Self-organizing teams produce the best results</li>
+                <li>Regular team retrospectives to improve effectiveness</li>
+            </ol>
+
+            <h2>🏃‍♂️ Scrum Framework</h2>
+            <div class="agile-card scrum-section">
+                <div class="concept-header">🏃‍♂️ Scrum - Most Popular Agile Framework</div>
+                
+                <p><strong>Overview:</strong> Scrum is an iterative and incremental framework for managing product development. It structures development in cycles called Sprints, typically 1-4 weeks long.</p>
+
+                <h3>👥 Scrum Roles:</h3>
+                <div class="roles-grid">
+                    <div class="role-card">
+                        <div class="role-title">🎯 Product Owner</div>
+                        <ul>
+                            <li>Defines product vision and roadmap</li>
+                            <li>Manages product backlog</li>
+                            <li>Prioritizes features based on business value</li>
+                            <li>Acts as customer representative</li>
+                            <li>Accepts or rejects completed work</li>
+                        </ul>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-title">🏃‍♂️ Scrum Master</div>
+                        <ul>
+                            <li>Facilitates Scrum process</li>
+                            <li>Removes impediments for the team</li>
+                            <li>Coaches team on Agile practices</li>
+                            <li>Ensures Scrum rules are followed</li>
+                            <li>Protects team from external interruptions</li>
+                        </ul>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-title">👨‍💻 Development Team</div>
+                        <ul>
+                            <li>Cross-functional team (developers, testers, designers)</li>
+                            <li>Self-organizing and self-managing</li>
+                            <li>Delivers potentially shippable product increment</li>
+                            <li>Estimates effort for user stories</li>
+                            <li>Commits to sprint goals</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>📅 Scrum Events (Ceremonies):</h3>
+                
+                <div class="key-points">
+                    <h4>🗓️ Sprint Planning (4-8 hours for 2-week sprint)</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Plan work for the upcoming sprint</li>
+                        <li><strong>Participants:</strong> Entire Scrum team</li>
+                        <li><strong>Output:</strong> Sprint backlog and sprint goal</li>
+                        <li><strong>Testing Input:</strong> Testers help estimate testing effort and identify testability concerns</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>🌅 Daily Standup (15 minutes)</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Synchronize team activities and plan for next 24 hours</li>
+                        <li><strong>Three Questions:</strong> What did you do yesterday? What will you do today? Any impediments?</li>
+                        <li><strong>Testing Focus:</strong> Testers share progress on testing tasks, blockers, and help needed</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h4>📊 Sprint Review (2-4 hours)</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Demonstrate completed work to stakeholders</li>
+                        <li><strong>Focus:</strong> Show working software increment</li>
+                        <li><strong>Testing Role:</strong> Testers present test results and quality metrics</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>🔄 Sprint Retrospective (1-3 hours)</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Reflect on process and identify improvements</li>
+                        <li><strong>Format:</strong> What went well? What could be improved? Action items?</li>
+                        <li><strong>Testing Improvements:</strong> Discuss testing processes, tools, and team collaboration</li>
+                    </ul>
+                </div>
+
+                <h3>📋 Scrum Artifacts:</h3>
+                <ul>
+                    <li><strong>Product Backlog:</strong> Prioritized list of features/requirements</li>
+                    <li><strong>Sprint Backlog:</strong> Items selected for current sprint + plan to deliver them</li>
+                    <li><strong>Product Increment:</strong> Working, tested software at end of sprint</li>
+                </ul>
+            </div>
+
+            <h2>📖 User Stories & Acceptance Criteria</h2>
+
+            <div class="user-story-card">
+                <h3>📝 User Story Format</h3>
+                <div class="story-format">
+                    "As a [type of user], I want [some goal] so that [some reason/benefit]"
+                </div>
+                
+                <h4>🌟 Example User Story:</h4>
+                <p><strong>Story:</strong> As a registered user, I want to reset my password so that I can regain access to my account if I forget it.</p>
+                
+                <div class="acceptance-criteria">
+                    <h4>✅ Acceptance Criteria:</h4>
+                    <ul>
+                        <li>Given I'm on the login page, when I click "Forgot Password", then I should see a password reset form</li>
+                        <li>Given I enter a valid email, when I submit the form, then I should receive a password reset email</li>
+                        <li>Given I click the reset link in email, when I enter a new password, then my password should be updated</li>
+                        <li>Given I enter an invalid email, when I submit the form, then I should see an error message</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>🧪 Testing in Agile</h2>
+
+            <div class="agile-card testing-pyramid">
+                <div class="concept-header">🧪 Agile Testing Principles</div>
+                
+                <h3>🎯 Key Testing Principles in Agile:</h3>
+                <ul>
+                    <li><strong>Continuous Testing:</strong> Testing throughout the sprint, not just at the end</li>
+                    <li><strong>Shift Left:</strong> Start testing activities early in the development cycle</li>
+                    <li><strong>Whole Team Approach:</strong> Everyone is responsible for quality</li>
+                    <li><strong>Fast Feedback:</strong> Quick feedback loops between dev and test</li>
+                    <li><strong>Risk-Based Testing:</strong> Focus testing on high-risk areas</li>
+                    <li><strong>Automated Testing:</strong> Heavy emphasis on test automation</li>
+                </ul>
+
+                <h3>🔄 Agile Testing Lifecycle:</h3>
+                <div class="sprint-timeline">
+                    <div class="sprint-day">
+                        <div class="day-number">Day 1-2</div>
+                        <div class="day-activity">Sprint Planning<br>Test Planning<br>Story Analysis</div>
+                    </div>
+                    <div class="sprint-day">
+                        <div class="day-number">Day 3-4</div>
+                        <div class="day-activity">Test Case Design<br>Test Data Setup<br>Environment Prep</div>
+                    </div>
+                    <div class="sprint-day">
+                        <div class="day-number">Day 5-8</div>
+                        <div class="day-activity">Development<br>Unit Testing<br>Code Reviews</div>
+                    </div>
+                    <div class="sprint-day">
+                        <div class="day-number">Day 9-12</div>
+                        <div class="day-activity">Integration Testing<br>System Testing<br>Bug Fixes</div>
+                    </div>
+                    <div class="sprint-day">
+                        <div class="day-number">Day 13-14</div>
+                        <div class="day-activity">Regression Testing<br>UAT<br>Sprint Demo</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>📊 Agile Testing Quadrants</h2>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Quadrant</th>
+                    <th>Purpose</th>
+                    <th>Focus</th>
+                    <th>Examples</th>
+                    <th>Who Performs</th>
+                </tr>
+                <tr>
+                    <td><strong>Q1: Technology Facing + Supporting Development</strong></td>
+                    <td>Guide Development</td>
+                    <td>Internal Code Quality</td>
+                    <td>Unit Tests, Component Tests</td>
+                    <td>Developers</td>
+                </tr>
+                <tr>
+                    <td><strong>Q2: Business Facing + Supporting Development</strong></td>
+                    <td>Guide Development</td>
+                    <td>Business Requirements</td>
+                    <td>Functional Tests, Story Tests</td>
+                    <td>Testers + Developers</td>
+                </tr>
+                <tr>
+                    <td><strong>Q3: Business Facing + Critiquing Product</strong></td>
+                    <td>Critique Product</td>
+                    <td>User Experience</td>
+                    <td>UAT, Usability Testing</td>
+                    <td>Testers + Users</td>
+                </tr>
+                <tr>
+                    <td><strong>Q4: Technology Facing + Critiquing Product</strong></td>
+                    <td>Critique Product</td>
+                    <td>Non-functional aspects</td>
+                    <td>Performance, Security</td>
+                    <td>Specialists</td>
+                </tr>
+            </table>
+
+            <h2>🔍 Definition of Done (DoD)</h2>
+            
+            <div class="highlight-box">
+                <h3>✅ Sample Definition of Done</h3>
+                <p>A user story is considered "Done" when:</p>
+                <ul>
+                    <li>✅ Code is written and reviewed</li>
+                    <li>✅ Unit tests are written and passing</li>
+                    <li>✅ Integration tests are passing</li>
+                    <li>✅ Functional testing is completed</li>
+                    <li>✅ Acceptance criteria are met</li>
+                    <li>✅ No critical or high severity bugs</li>
+                    <li>✅ Code is deployed to staging environment</li>
+                    <li>✅ Documentation is updated</li>
+                    <li>✅ Product Owner has accepted the story</li>
+                </ul>
+            </div>
+
+            <h2>🔧 Agile Testing Techniques</h2>
+
+            <div class="key-points">
+                <h3>🎯 Test-Driven Development (TDD)</h3>
+                <ol>
+                    <li><strong>Red:</strong> Write a failing test case</li>
+                    <li><strong>Green:</strong> Write minimum code to pass the test</li>
+                    <li><strong>Refactor:</strong> Improve code while keeping tests green</li>
+                </ol>
+                <p><strong>Benefits:</strong> Better code quality, comprehensive test coverage, fewer defects</p>
+            </div>
+
+            <div class="example-box">
+                <h3>🔄 Behavior-Driven Development (BDD)</h3>
+                <p><strong>Format:</strong> Given-When-Then scenarios</p>
+                <ul>
+                    <li><strong>Given:</strong> Initial context/preconditions</li>
+                    <li><strong>When:</strong> Action performed</li>
+                    <li><strong>Then:</strong> Expected outcome</li>
+                </ul>
+                <p><strong>Example:</strong> Given user is logged in, When user clicks logout, Then user should be redirected to login page</p>
+            </div>
+
+            <div class="key-points">
+                <h3>🚀 Exploratory Testing</h3>
+                <ul>
+                    <li>Simultaneous learning, test design, and execution</li>
+                    <li>Unscripted testing approach</li>
+                    <li>Focus on discovery and investigation</li>
+                    <li>Time-boxed sessions (30-90 minutes)</li>
+                    <li>Document findings and charter</li>
+                </ul>
+            </div>
+
+            <h2>📋 Kanban vs Scrum</h2>
+
+            <div class="agile-card kanban-section">
+                <div class="concept-header">📋 Kanban - Continuous Flow</div>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Scrum</th>
+                        <th>Kanban</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Iterations</strong></td>
+                        <td>Fixed sprints (1-4 weeks)</td>
+                        <td>Continuous flow</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Roles</strong></td>
+                        <td>Defined roles (PO, SM, Dev Team)</td>
+                        <td>No prescribed roles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Planning</strong></td>
+                        <td>Sprint planning every sprint</td>
+                        <td>Continuous planning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Commitment</strong></td>
+                        <td>Sprint commitment</td>
+                        <td>No time-boxed commitment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Changes</strong></td>
+                        <td>No changes during sprint</td>
+                        <td>Changes anytime</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Testing</strong></td>
+                        <td>Testing within sprint</td>
+                        <td>Continuous testing</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>🧑‍🤝‍🧑 Role of Tester in Agile</h2>
+
+            <div class="warning-box">
+                <h3>🚨 Traditional vs Agile Testing Mindset</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Traditional Testing</th>
+                        <th>Agile Testing</th>
+                    </tr>
+                    <tr>
+                        <td>Testing is a separate phase</td>
+                        <td>Testing is continuous throughout development</td>
+                    </tr>
+                    <tr>
+                        <td>Testers work in isolation</td>
+                        <td>Testers collaborate closely with developers</td>
+                    </tr>
+                    <tr>
+                        <td>Focus on finding bugs</td>
+                        <td>Focus on preventing bugs</td>
+                    </tr>
+                    <tr>
+                        <td>Heavy documentation</td>
+                        <td>Lightweight documentation</td>
+                    </tr>
+                    <tr>
+                        <td>Testing after development</td>
+                        <td>Testing parallel to development</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="highlight-box">
+                <h3>👩‍💻 Agile Tester Responsibilities</h3>
+                <ul>
+                    <li><strong>Story Analysis:</strong> Participate in story refinement and planning</li>
+                    <li><strong>Acceptance Criteria:</strong> Help define and validate acceptance criteria</li>
+                    <li><strong>Test Strategy:</strong> Develop test approach for each sprint</li>
+                    <li><strong>Continuous Testing:</strong> Test throughout the sprint, not just at the end</li>
+                    <li><strong>Automation:</strong> Contribute to test automation efforts</li>
+                    <li><strong>Collaboration:</strong> Work closely with developers and product owners</li>
+                    <li><strong>Quality Advocacy:</strong> Champion quality across the team</li>
+                </ul>
+            </div>
+
+            <h2>📈 Agile Testing Metrics</h2>
+
+            <div class="example-box">
+                <h3>📊 Key Metrics for Agile Teams</h3>
+                <ul>
+                    <li><strong>Velocity:</strong> Story points completed per sprint</li>
+                    <li><strong>Burndown Charts:</strong> Visual representation of work remaining</li>
+                    <li><strong>Defect Escape Rate:</strong> Bugs found in production vs total bugs</li>
+                    <li><strong>Test Coverage:</strong> Percentage of code covered by tests</li>
+                    <li><strong>Cycle Time:</strong> Time from story start to completion</li>
+                    <li><strong>Customer Satisfaction:</strong> Feedback from end users</li>
+                </ul>
+            </div>
+
+            <h2>⚠️ Common Agile Testing Challenges</h2>
+
+            <div class="warning-box">
+                <h3>🚨 Challenges & Solutions</h3>
+                <ul>
+                    <li><strong>Challenge:</strong> Insufficient time for testing
+                        <br><strong>Solution:</strong> Start testing early, automate repetitive tests, focus on risk-based testing</li>
+                    <li><strong>Challenge:</strong> Changing requirements
+                        <br><strong>Solution:</strong> Embrace change, maintain flexible test cases, continuous communication</li>
+                    <li><strong>Challenge:</strong> Lack of documentation
+                        <br><strong>Solution:</strong> Living documentation, automated tests as documentation, collaborative sessions</li>
+                    <li><strong>Challenge:</strong> Test environment issues
+                        <br><strong>Solution:</strong> Infrastructure as code, containerization, environment automation</li>
+                    <li><strong>Challenge:</strong> Team coordination
+                        <br><strong>Solution:</strong> Daily standups, clear communication channels, shared responsibilities</li>
+                </ul>
+            </div>
+
+            <h2>🛠️ Agile Testing Tools</h2>
+
+            <div class="key-points">
+                <h3>🔧 Essential Agile Testing Tools</h3>
+                <ul>
+                    <li><strong>Test Management:</strong> JIRA, Azure DevOps, TestRail</li>
+                    <li><strong>Automation:</strong> Selenium, Cypress, Playwright</li>
+                    <li><strong>API Testing:</strong> Postman, REST Assured, SoapUI</li>
+                    <li><strong>Performance:</strong> JMeter, LoadRunner, Gatling</li>
+                    <li><strong>BDD Tools:</strong> Cucumber, SpecFlow, Behave</li>
+                    <li><strong>CI/CD:</strong> Jenkins, GitLab CI, Azure Pipelines</li>
+                    <li><strong>Communication:</strong> Slack, Microsoft Teams, Confluence</li>
+                </ul>
+            </div>
+
+            <h2>📊 Agile vs Traditional Testing</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Aspect</th>
+                    <th>Traditional Testing</th>
+                    <th>Agile Testing</th>
+                </tr>
+                <tr>
+                    <td><strong>Approach</strong></td>
+                    <td>Sequential, phase-based</td>
+                    <td>Iterative, continuous</td>
+                </tr>
+                <tr>
+                    <td><strong>Documentation</strong></td>
+                    <td>Heavy, detailed test plans</td>
+                    <td>Lightweight, just enough</td>
+                </tr>
+                <tr>
+                    <td><strong>Requirements</strong></td>
+                    <td>Fixed, detailed upfront</td>
+                    <td>Evolving user stories</td>
+                </tr>
+                <tr>
+                    <td><strong>Test Design</strong></td>
+                    <td>Comprehensive test cases</td>
+                    <td>Risk-based, exploratory</td>
+                </tr>
+                <tr>
+                    <td><strong>Automation</strong></td>
+                    <td>Optional, later phases</td>
+                    <td>Essential, from day one</td>
+                </tr>
+                <tr>
+                    <td><strong>Feedback</strong></td>
+                    <td>End of testing phase</td>
+                    <td>Continuous, immediate</td>
+                </tr>
+                <tr>
+                    <td><strong>Team Structure</strong></td>
+                    <td>Separate dev and test teams</td>
+                    <td>Cross-functional teams</td>
+                </tr>
+            </table>
+
+            <h2>🎯 Best Practices for Agile Testing</h2>
+
+            <div class="highlight-box">
+                <h3>✅ Agile Testing Best Practices</h3>
+                <ul>
+                    <li><strong>Start Testing Early:</strong> Begin testing activities from sprint planning</li>
+                    <li><strong>Automate Regression:</strong> Automate repetitive and regression tests</li>
+                    <li><strong>Risk-Based Testing:</strong> Focus on high-risk areas first</li>
+                    <li><strong>Continuous Integration:</strong> Integrate code and run tests frequently</li>
+                    <li><strong>Collaborate Actively:</strong> Work closely with developers and product owners</li>
+                    <li><strong>Test in Production-like Environment:</strong> Use environments similar to production</li>
+                    <li><strong>Maintain Test Data:</strong> Keep test data fresh and relevant</li>
+                    <li><strong>Learn Continuously:</strong> Adapt and improve testing practices</li>
+                </ul>
+            </div>
+
+            <h2>📝 Today's Comprehensive Tasks</h2>
+
+            <div class="highlight-box">
+                <h3>✏️ Task 1: User Story Analysis</h3>
+                <p>Create a complete user story for an e-commerce login feature:</p>
+                <ol>
+                    <li><strong>Write the user story</strong> using the format: "As a... I want... So that..."</li>
+                    <li><strong>Define 5 acceptance criteria</strong> using Given-When-Then format</li>
+                    <li><strong>Identify test scenarios</strong> for positive and negative cases</li>
+                    <li><strong>Estimate story points</strong> (1, 2, 3, 5, 8, 13) and justify your estimate</li>
+                </ol>
+            </div>
+
+            <div class="key-points">
+                <h3>✏️ Task 2: Sprint Planning Simulation</h3>
+                <p>Imagine you're a tester in a 2-week sprint planning for a mobile banking app:</p>
+                <ul>
+                    <li><strong>Day 1-2:</strong> What testing activities would you plan?</li>
+                    <li><strong>Day 3-6:</strong> How would you collaborate with developers?</li>
+                    <li><strong>Day 7-10:</strong> What types of testing would you execute?</li>
+                    <li><strong>Day 11-14:</strong> How would you ensure quality for sprint demo?</li>
+                    <li><strong>Identify 3 risks</strong> that could impact testing and mitigation strategies</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h3>✏️ Task 3: Definition of Done Creation</h3>
+                <p>Create a Definition of Done for your team working on a social media app:</p>
+                <ul>
+                    <li>List 8-10 criteria that must be met before a story is considered "Done"</li>
+                    <li>Include development, testing, and deployment criteria</li>
+                    <li>Consider quality gates and acceptance requirements</li>
+                    <li>Think about what stakeholders would expect</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>✏️ Task 4: Agile Testing Challenges</h3>
+                <p>Scenario: Your agile team is struggling with the following issues. Provide solutions:</p>
+                <ol>
+                    <li><strong>Problem:</strong> Developers are delivering features on the last day of sprint
+                        <br><strong>Your Solution:</strong> ________________</li>
+                    <li><strong>Problem:</strong> Test environment is frequently unstable
+                        <br><strong>Your Solution:</strong> ________________</li>
+                    <li><strong>Problem:</strong> Requirements are changing mid-sprint
+                        <br><strong>Your Solution:</strong> ________________</li>
+                    <li><strong>Problem:</strong> No time for exploratory testing
+                        <br><strong>Your Solution:</strong> ________________</li>
+                </ol>
+            </div>
+
+            <h2>📚 Industry Insights & Statistics</h2>
+
+            <div class="example-box">
+                <h3>📊 Agile Adoption Statistics</h3>
+                <ul>
+                    <li>71% of organizations use Agile approaches (State of Agile Report)</li>
+                    <li>Scrum is used by 66% of Agile teams</li>
+                    <li>Agile projects are 28% more successful than traditional projects</li>
+                    <li>Companies using Agile testing deliver software 37% faster</li>
+                    <li>Agile teams have 60% fewer defects in production</li>
+                    <li>Test automation in Agile reduces testing time by 50%</li>
+                </ul>
+            </div>
+
+            <h2>📚 Recommended Resources</h2>
+            <ul>
+                <li><strong>Books:</strong> "Agile Testing" by Lisa Crispin & Janet Gregory</li>
+                <li><strong>Certifications:</strong> Certified Agile Tester (CAT), ISTQB Agile Tester</li>
+                <li><strong>Tools to Explore:</strong> JIRA, Confluence, Selenium, Postman</li>
+                <li><strong>Communities:</strong> Agile Alliance, Ministry of Testing</li>
+                <li><strong>Practice:</strong> Join open-source projects using Agile methodology</li>
+            </ul>
+
+            <h2>🚀 What's Next?</h2>
+            <p>Tomorrow, we'll dive deep into <strong>Testing Levels</strong> - exploring Unit Testing, Integration Testing, System Testing, and Acceptance Testing in detail, and understanding how they fit into the overall testing strategy.</p>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="navigation-footer">
+            <a href="Day3.html" class="nav-btn">← Previous Day</a>
+            <div class="progress-tracker">
+                <strong>Progress:</strong> 4/15 Days Complete
+            </div>
+            <a href="Day5.html" class="nav-btn">Next Day →</a>
+        </div>
+    </div>
+</body>
+</html>
