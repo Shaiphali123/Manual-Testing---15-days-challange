@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5 - Testing Levels</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #667eea;
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .content-section h3 {
+            color: #495057;
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            font-weight: 500;
+        }
+
+        .level-card {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .level-card h4 {
+            color: #28a745;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        ul {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+
+        ul li {
+            margin: 8px 0;
+            color: #495057;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .definition-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .definition-box strong {
+            color: #856404;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .integration-approach {
+            background: #e8f5e8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .integration-approach h5 {
+            color: #155724;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .key-points {
+            background: linear-gradient(135deg, #fff3e0 0%, #fce4ec 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-points h3 {
+            color: #d84315;
+            margin-bottom: 15px;
+        }
+
+        .navigation {
+            margin: 40px 0;
+            padding: 20px 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+            min-height: 70px;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .prev-btn, .next-btn {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .home-btn {
+            flex: 0 0 auto;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .nav-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .next-btn .nav-content {
+            align-items: flex-end;
+        }
+
+        .nav-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 2px;
+        }
+
+        .nav-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .nav-arrow {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            color: #6c757d;
+            font-style: italic;
+            border-top: 1px solid #e9ecef;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-btn {
+                width: 100%;
+                max-width: none;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .nav-content {
+                align-items: center !important;
+            }
+
+            .prev-btn .nav-arrow {
+                order: -1;
+            }
+
+            .next-btn .nav-arrow {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Day 5: Testing Levels</h1>
+            <p>Unit, Integration, System, and Acceptance testing levels</p>
+        </div>
+
+        <div class="content-section">
+            <h2>What are Testing Levels?</h2>
+            <div class="definition-box">
+                <strong>Definition:</strong> Testing levels refer to different phases of testing where software components are tested at various stages of the development lifecycle, from individual units to the complete integrated system.
+            </div>
+            <p>Testing levels help organize testing activities systematically and ensure comprehensive coverage of all aspects of the software system.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>The Four Main Testing Levels</h2>
+            
+            <div class="level-card">
+                <h4>1. Unit Testing</h4>
+                <p><strong>Definition:</strong> Testing of individual software components or modules in isolation.</p>
+                <ul>
+                    <li>Tests smallest testable parts of an application</li>
+                    <li>Performed by developers during coding phase</li>
+                    <li>Uses white-box testing techniques</li>
+                    <li>Fast execution and early defect detection</li>
+                    <li>Tools: JUnit, NUnit, pytest, Jasmine</li>
+                </ul>
+            </div>
+
+            <div class="level-card" style="border-left-color: #007bff;">
+                <h4 style="color: #007bff;">2. Integration Testing</h4>
+                <p><strong>Definition:</strong> Testing the interfaces and interaction between integrated components or systems.</p>
+                <ul>
+                    <li>Tests data flow and interface between modules</li>
+                    <li>Performed after unit testing</li>
+                    <li>Identifies interface defects between modules</li>
+                    <li>Can use both black-box and white-box techniques</li>
+                    <li>Tools: Postman, SoapUI, REST Assured</li>
+                </ul>
+            </div>
+
+            <div class="level-card" style="border-left-color: #ffc107;">
+                <h4 style="color: #ffc107;">3. System Testing</h4>
+                <p><strong>Definition:</strong> Testing of a complete integrated system to verify that it meets specified requirements.</p>
+                <ul>
+                    <li>Tests end-to-end functionality</li>
+                    <li>Performed in environment similar to production</li>
+                    <li>Uses black-box testing techniques</li>
+                    <li>Includes functional and non-functional testing</li>
+                    <li>Tools: Selenium, LoadRunner, JIRA</li>
+                </ul>
+            </div>
+
+            <div class="level-card" style="border-left-color: #dc3545;">
+                <h4 style="color: #dc3545;">4. Acceptance Testing</h4>
+                <p><strong>Definition:</strong> Final level of testing to determine if the system meets business requirements and is ready for deployment.</p>
+                <ul>
+                    <li>Validates system against business requirements</li>
+                    <li>Performed by end users or business stakeholders</li>
+                    <li>Uses black-box testing techniques</li>
+                    <li>Decides system readiness for production</li>
+                    <li>Types: User Acceptance Testing (UAT), Business Acceptance Testing (BAT)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Integration Testing Approaches</h2>
+            
+            <div class="integration-approach">
+                <h5>Big Bang Approach</h5>
+                <ul>
+                    <li>All components integrated simultaneously</li>
+                    <li>Testing performed after complete integration</li>
+                    <li>Difficult to isolate defects</li>
+                    <li>Suitable for small systems only</li>
+                </ul>
+            </div>
+
+            <div class="integration-approach">
+                <h5>Top-Down Approach</h5>
+                <ul>
+                    <li>Integration starts from top-level modules</li>
+                    <li>Lower level modules simulated by stubs</li>
+                    <li>Critical modules tested on priority</li>
+                    <li>Early prototype demonstration possible</li>
+                </ul>
+            </div>
+
+            <div class="integration-approach">
+                <h5>Bottom-Up Approach</h5>
+                <ul>
+                    <li>Integration starts from lowest level modules</li>
+                    <li>Higher level modules simulated by drivers</li>
+                    <li>Basic functionality tested early</li>
+                    <li>No stubs required</li>
+                </ul>
+            </div>
+
+            <div class="integration-approach">
+                <h5>Sandwich/Hybrid Approach</h5>
+                <ul>
+                    <li>Combination of top-down and bottom-up</li>
+                    <li>Testing from both directions simultaneously</li>
+                    <li>Faster integration process</li>
+                    <li>Requires more resources and planning</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Testing Level Comparison</h2>
+            <table>
+                <tr>
+                    <th>Testing Level</th>
+                    <th>Scope</th>
+                    <th>Performed By</th>
+                    <th>Environment</th>
+                    <th>Testing Technique</th>
+                    <th>Defect Cost</th>
+                </tr>
+                <tr>
+                    <td>Unit Testing</td>
+                    <td>Individual modules/components</td>
+                    <td>Developers</td>
+                    <td>Development</td>
+                    <td>White-box</td>
+                    <td>Very Low</td>
+                </tr>
+                <tr>
+                    <td>Integration Testing</td>
+                    <td>Module interfaces</td>
+                    <td>Developers/Testers</td>
+                    <td>Development/Test</td>
+                    <td>Black-box & White-box</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>System Testing</td>
+                    <td>Complete system</td>
+                    <td>Test Team</td>
+                    <td>Test Environment</td>
+                    <td>Black-box</td>
+                    <td>Medium</td>
+                </tr>
+                <tr>
+                    <td>Acceptance Testing</td>
+                    <td>Business requirements</td>
+                    <td>End Users/Business</td>
+                    <td>Production-like</td>
+                    <td>Black-box</td>
+                    <td>High</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content-section">
+            <div class="key-points">
+                <h3>Key Points to Remember</h3>
+                <ul>
+                    <li><strong>Hierarchical Structure:</strong> Testing levels follow a sequential approach</li>
+                    <li><strong>Early Testing:</strong> Defects found early are cheaper to fix</li>
+                    <li><strong>Different Objectives:</strong> Each level has specific goals and scope</li>
+                    <li><strong>Overlapping Activities:</strong> Testing levels may overlap in practice</li>
+                    <li><strong>Exit Criteria:</strong> Each level must meet defined criteria before moving to next</li>
+                    <li><strong>Risk Management:</strong> Each level addresses different types of risks</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Benefits of Testing Levels</h2>
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>Structured Approach:</strong> Provides systematic testing methodology</li>
+                    <li><strong>Risk Mitigation:</strong> Identifies defects at appropriate levels</li>
+                    <li><strong>Cost Optimization:</strong> Early defect detection reduces overall cost</li>
+                    <li><strong>Quality Assurance:</strong> Ensures comprehensive testing coverage</li>
+                    <li><strong>Clear Responsibilities:</strong> Defines roles and responsibilities clearly</li>
+                    <li><strong>Better Planning:</strong> Helps in effective test planning and execution</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Summary</h2>
+            <p>Testing levels provide a structured framework for software testing activities. Understanding these levels is crucial for:</p>
+            <ul>
+                <li>Planning effective testing strategies</li>
+                <li>Allocating appropriate resources</li>
+                <li>Managing testing timelines</li>
+                <li>Ensuring comprehensive quality coverage</li>
+                <li>Minimizing defect leakage to production</li>
+            </ul>
+            <p>Each testing level serves a specific purpose and contributes to the overall quality assurance process, making them essential components of any successful software testing strategy.</p>
+        </div>
+
+        <div class="navigation">
+            <div class="nav-buttons">
+                <a href="Day4.html" class="nav-btn prev-btn">
+                    <span class="nav-arrow">←</span>
+                    <div class="nav-content">
+                        <span class="nav-label">Previous</span>
+                        <span class="nav-title">Day 4: Agile Testing Concepts</span>
+                    </div>
+                </a>
+                
+                <a href="index.html" class="nav-btn home-btn">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-title">Home</span>
+                </a>
+                
+                <a href="Day6.html" class="nav-btn next-btn">
+                    <div class="nav-content">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">Day 6: Testing Types</span>
+                    </div>
+                    <span class="nav-arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📚 Day 5 Complete - Testing Levels | 15-Day Manual Testing Challenge</p>
+        </div>
+    </div>
+</body>
+</html>
