@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 14 | Interview Q&A Compilation</title>
+    <style>
+        /* --- General & Desktop Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-size: 1.8em;
+        }
+        .content-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        .summary-section {
+            background-color: #e9f5ff;
+            border-left: 5px solid #0056b3;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+        .summary-section ul {
+            padding-left: 25px;
+        }
+        .summary-section li {
+            margin-bottom: 10px;
+        }
+        .qa-item {
+            background-color: #f9f9f9;
+            border: 1px solid #e7e7e7;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .question {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .answer {
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 3px solid #ccc;
+            color: #555;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .nav-btn {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        .nav-btn:hover {
+            background-color: #004494;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .footer-brand {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* --- Responsive Styles for Mobile --- */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+                box-shadow: none;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            .content-section p { font-size: 1em; }
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            .nav-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Day 14 - Interview Q&A Compilation</h1>
+        </header>
+
+        <main>
+            <!-- Introduction Section -->
+            <section id="introduction" class="content-section">
+                <p>Preparation is key to success. This compilation covers some of the most frequently asked questions in manual testing interviews. Understanding these concepts thoroughly will help you articulate your answers with clarity and confidence.</p>
+            </section>
+
+            <!-- Basic Testing Q&A -->
+            <section id="basics" class="content-section">
+                <h2>1. Basic Testing Concepts</h2>
+                <div class="qa-item">
+                    <p class="question">Q: What is software testing?</p>
+                    <p class="answer">A: Software testing is the process of evaluating and verifying that a software application does what it is supposed to do. The goal is to identify defects to ensure that the product meets the requirements and the end-user's needs.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: What is the difference between Verification and Validation?</p>
+                    <p class="answer">A: <strong>Verification</strong> is checking if we are building the system right (i.e., does it meet the requirements and design specifications?). <strong>Validation</strong> is checking if we are building the right system (i.e., does it meet the customer's actual needs?).</p>
+                </div>
+                 <div class="qa-item">
+                    <p class="question">Q: What are the different levels of testing?</p>
+                    <p class="answer">A: The main levels are: <strong>Unit Testing</strong> (testing individual components), <strong>Integration Testing</strong> (testing combined parts of an application), <strong>System Testing</strong> (testing the complete and integrated software), and <strong>Acceptance Testing</strong> (validating the software against user needs).</p>
+                </div>
+            </section>
+
+            <!-- Test Case & Test Plan Q&A -->
+            <section id="test-design" class="content-section">
+                <h2>2. Test Design & Planning</h2>
+                <div class="qa-item">
+                    <p class="question">Q: What is a test case?</p>
+                    <p class="answer">A: A test case is a set of conditions or variables under which a tester will determine whether a system under test satisfies requirements or works correctly. It typically includes steps, test data, expected results, and actual results.</p>
+                </div>
+                 <div class="qa-item">
+                    <p class="question">Q: How do you write a good test case?</p>
+                    <p class="answer">A: A good test case is clear, concise, and easy to understand. It should have a unique ID, a strong title, clear steps, specific expected results, and be reusable. It should focus on testing one specific thing.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: What is the difference between a Test Plan and a Test Strategy?</p>
+                    <p class="answer">A: A <strong>Test Strategy</strong> is a high-level document that defines the overall approach to testing for a project or organization (e.g., what to test, which tools to use). A <strong>Test Plan</strong> is a detailed document that outlines the scope, objectives, resources, and schedule for testing a specific project.</p>
+                </div>
+            </section>
+
+            <!-- Bug & Defect Q&A -->
+            <section id="defects" class="content-section">
+                <h2>3. Bug & Defect Management</h2>
+                <div class="qa-item">
+                    <p class="question">Q: What is the difference between defect Severity and Priority?</p>
+                    <p class="answer">A: <strong>Severity</strong> defines the impact a defect has on the application (e.g., critical, major, minor). It is set by the tester. <strong>Priority</strong> defines the urgency of fixing the defect (e.g., high, medium, low). It is usually set by the product manager or client.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: Can you explain the Defect Life Cycle?</p>
+                    <p class="answer">A: The Defect Life Cycle is the sequence of stages a defect goes through. It typically starts as 'New', moves to 'Assigned', then 'Open'. Once fixed, it becomes 'Fixed'. The tester then verifies it, moving it to 'Re-tested' and finally 'Closed'. If not fixed, it can be 'Rejected' or 'Deferred'.</p>
+                </div>
+            </section>
+            
+            <!-- Test Execution & Reporting Q&A -->
+            <section id="execution" class="content-section">
+                <h2>4. Test Execution & Reporting</h2>
+                <div class="qa-item">
+                    <p class="question">Q: What are Entry and Exit Criteria in testing?</p>
+                    <p class="answer">A: <strong>Entry Criteria</strong> are the prerequisite conditions that must be met before testing can begin (e.g., environment is ready, all required test data is available). <strong>Exit Criteria</strong> are the conditions that must be met before testing can be officially concluded (e.g., 95% of test cases passed, no open critical defects).</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: What is a Test Closure Report?</p>
+                    <p class="answer">A: A Test Closure Report is a formal document prepared at the end of the testing project. It summarizes all testing activities, final metrics (like test coverage and defect density), and provides a final assessment of the software's quality and readiness.</p>
+                </div>
+            </section>
+
+            <!-- Scenario-Based Q&A -->
+            <section id="scenarios" class="content-section">
+                <h2>5. Scenario-Based Questions</h2>
+                <div class="qa-item">
+                    <p class="question">Q: How would you test a simple login page?</p>
+                    <p class="answer">A: I would test both positive and negative scenarios. Positive: valid username/password. Negative: invalid username/password, empty fields, password managers. I would also check UI elements, "Forgot Password" link, "Remember Me" functionality, and security aspects like password masking.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: You find a critical bug right before a release. What do you do?</p>
+                    <p class="answer">A: I would immediately report the bug with a high severity and priority, providing clear steps to reproduce it. Then, I would communicate the finding directly to the test lead, project manager, and developers to ensure it's visible. The decision to delay the release would be made by the stakeholders based on the impact analysis.</p>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section id="summary" class="content-section">
+                <div class="summary-section">
+                    <h2>5 Key Tips for Your Interview</h2>
+                    <ul>
+                        <li><strong>Be Clear and Confident:</strong> Structure your answers logically. Start with a definition and then provide an example.</li>
+                        <li><strong>Use Real Examples:</strong> Whenever possible, relate your answers to projects you've worked on. This demonstrates practical experience.</li>
+                        <li><strong>Think Like a User:</strong> Show that you understand the business impact of bugs and the importance of user experience.</li>
+                        <li><strong>Know Your Fundamentals:</strong> Have a strong grasp of core concepts like the STLC, bug life cycle, and testing types.</li>
+                        <li><strong>Ask Questions:</strong> Show your interest by asking thoughtful questions about their testing process, team structure, or challenges.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <a href="Day13.html" class="nav-btn">&laquo; Previous: Day 13</a>
+            <a href="Day15.html" class="nav-btn">Next: Day 15 &raquo;</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <span class="footer-brand">Shaivi Connect</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
