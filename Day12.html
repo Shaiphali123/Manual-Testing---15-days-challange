@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12 | Exploratory & Ad-hoc Testing</title>
+    <style>
+        /* --- General & Desktop Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-size: 1.8em;
+        }
+        h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        .content-section p, .content-section ul {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .testing-approaches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .approach-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-left: 5px solid #28a745;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .approach-card ul {
+            padding-left: 20px;
+            font-size: 0.95em;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 25px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1em;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #0056b3;
+            color: white;
+            font-weight: bold;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .qa-item {
+            background-color: #f9f9f9;
+            border: 1px solid #e7e7e7;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .question {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .answer {
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 3px solid #ccc;
+            color: #555;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .nav-btn {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        .nav-btn:hover {
+            background-color: #004494;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .footer-brand {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* --- Responsive Styles for Mobile --- */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+                box-shadow: none;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            .content-section p, .content-section ul { font-size: 1em; }
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            .nav-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Day 12 - Exploratory & Ad-hoc Testing</h1>
+        </header>
+
+        <main>
+            <section id="introduction" class="content-section">
+                <p>Unscripted testing approaches such as Exploratory and Ad-hoc testing allow testers to think creatively, uncover hidden defects, and validate user experience beyond predefined test cases.</p>
+            </section>
+
+            <div class="testing-approaches">
+                <div class="approach-card">
+                    <h2>Exploratory Testing</h2>
+                    <p><strong>Definition:</strong> Exploratory testing is a simultaneous process of test design, execution, and learning about the system.</p>
+                    
+                    <h3>Key Characteristics:</h3>
+                    <ul>
+                        <li>No predefined test scripts.</li>
+                        <li>Relies on the tester’s skill, domain knowledge, and intuition.</li>
+                        <li>Helps discover critical issues quickly.</li>
+                    </ul>
+
+                    <h3>Practical Applications:</h3>
+                    <ul>
+                        <li>Early-stage testing when requirements are incomplete.</li>
+                        <li>Identifying usability and user experience issues.</li>
+                        <li>Testing complex workflows and new features.</li>
+                    </ul>
+                </div>
+
+                <div class="approach-card" style="border-left-color: #dc3545;">
+                    <h2>Ad-hoc Testing</h2>
+                    <p><strong>Definition:</strong> Ad-hoc testing is an informal, unstructured testing approach performed without planning or documentation.</p>
+                    
+                    <h3>Key Characteristics:</h3>
+                    <ul>
+                        <li>Performed without any test cases or documentation.</li>
+                        <li>Tester relies purely on intuition and experience ("Error Guessing").</li>
+                        <li>Often used to find defects missed in formal testing.</li>
+                    </ul>
+
+                    <h3>Practical Applications:</h3>
+                    <ul>
+                        <li>Quick checks after bug fixes (buddy testing).</li>
+                        <li>Short testing cycles with limited time.</li>
+                        <li>When formal exploratory sessions are not feasible.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <section id="comparison" class="content-section">
+                <h2>Difference Between Exploratory and Ad-hoc Testing</h2>
+                <div class="table-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Exploratory Testing</th>
+                                <th>Ad-hoc Testing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Approach</strong></td>
+                                <td>Structured but unscripted (guided by charters)</td>
+                                <td>Completely unstructured and informal</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Documentation</strong></td>
+                                <td>Notes, session charters, and findings are maintained</td>
+                                <td>Generally, no documentation is created</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tester's Role</strong></td>
+                                <td>Combines learning, test design, and execution</td>
+                                <td>Relies purely on intuition and past experience</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Usage</strong></td>
+                                <td>Early testing, usability, complex features</td>
+                                <td>Quick bug finding, short cycles, random checks</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="best-practices" class="content-section">
+                <h2>Best Practices for Unscripted Testing</h2>
+                <ul>
+                    <li>In exploratory testing, use <strong>test charters</strong> to provide a clear goal and scope for each session.</li>
+                    <li>Document key observations, defects found, and areas covered, even in informal sessions.</li>
+                    <li>Use unscripted testing to <strong>complement</strong> formal, scripted testing, not replace it.</li>
+                    <li>Focus on high-risk, critical, or newly developed areas of the application.</li>
+                </ul>
+            </section>
+
+            <section id="interview" class="content-section">
+                <h2>Interview Questions - Day 12</h2>
+                <div class="qa-item">
+                    <p class="question">Q: What is exploratory testing?</p>
+                    <p class="answer">A: It is a simultaneous process of learning the system, designing tests, and executing them on the fly, without predefined scripts.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: How is ad-hoc testing different from exploratory testing?</p>
+                    <p class="answer">A: Exploratory testing is unscripted but still structured with goals and charters, and involves learning and documentation. Ad-hoc testing is completely unstructured, informal, and undocumented.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: When would you use exploratory testing?</p>
+                    <p class="answer">A: It's best used during early development stages, when requirements are still evolving, for testing complex features, or to specifically identify usability issues.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: What are the advantages of ad-hoc testing?</p>
+                    <p class="answer">A: Its main advantages are speed and flexibility. It can be performed quickly without any preparation and is effective at uncovering random defects missed by formal testing.</p>
+                </div>
+                 <div class="qa-item">
+                    <p class="question">Q: Why are unscripted testing approaches important?</p>
+                    <p class="answer">A: They are important because they leverage the tester's creativity and intuition to find defects that rigid scripts might miss. They provide a valuable supplement to formal testing, ensuring better overall coverage.</p>
+                </div>
+            </section>
+        </main>
+
+        <div class="navigation">
+            <a href="Day11.html" class="nav-btn">&laquo; Previous: Day 11</a>
+            <a href="Day13.html" class="nav-btn">Next: Day 13 &raquo;</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <span class="footer-brand">Shaivi Connect</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
