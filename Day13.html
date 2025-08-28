@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 13 | Test Reporting & Metrics</title>
+    <style>
+        /* --- General & Desktop Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-size: 1.8em;
+        }
+        h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        .content-section p, .content-section ul {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 25px;
+        }
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1em;
+        }
+        .metrics-table th, .metrics-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .metrics-table th {
+            background-color: #0056b3;
+            color: white;
+            font-weight: bold;
+        }
+        .metrics-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .summary-section {
+            background-color: #e9f5ff;
+            border-left: 5px solid #0056b3;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+        .qa-item {
+            background-color: #f9f9f9;
+            border: 1px solid #e7e7e7;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .question {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .answer {
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 3px solid #ccc;
+            color: #555;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .nav-btn {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        .nav-btn:hover {
+            background-color: #004494;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .footer-brand {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* --- Responsive Styles for Mobile --- */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+                box-shadow: none;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            .content-section p, .content-section ul { font-size: 1em; }
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            .nav-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Day 13 - Test Reporting & Metrics</h1>
+        </header>
+
+        <main>
+            <!-- Introduction Section -->
+            <section id="introduction" class="content-section">
+                <h2>What is Test Reporting?</h2>
+                <p><strong>Test Reporting</strong> is the process of communicating the results and status of testing activities to project stakeholders. A good test report provides a clear, concise summary of the testing scope, activities performed, and the final outcome. It is crucial for making informed decisions, such as whether the software is ready for release.</p>
+            </section>
+
+            <!-- Types of Test Reports Section -->
+            <section id="reports" class="content-section">
+                <h2>Types of Test Reports</h2>
+                <ul>
+                    <li><strong>Daily Status Report:</strong> A brief report sent out daily, summarizing tasks completed, tasks planned for the next day, and any blocking issues.</li>
+                    <li><strong>Test Cycle Summary Report:</strong> A report sent at the end of a test cycle (e.g., a sprint), detailing the overall status of testing for that period.</li>
+                    <li><strong>Final Test Report / Test Closure Report:</strong> A comprehensive document prepared at the end of the project, summarizing the entire testing effort, final outcomes, and key learnings.</li>
+                </ul>
+            </section>
+
+            <!-- Metrics in Testing Section -->
+            <section id="metrics-intro" class="content-section">
+                <h2>Metrics in Testing</h2>
+                <p><strong>Test Metrics</strong> are quantitative measures that help in monitoring and controlling the testing process. They provide insights into the quality of the product, the efficiency of the testing process, and the effectiveness of the QA team's efforts.</p>
+            </section>
+
+            <!-- Key Metrics & KPIs Section -->
+            <section id="key-metrics" class="content-section">
+                <h2>Key Metrics & KPIs</h2>
+                <p>Here are some of the most common metrics (Key Performance Indicators or KPIs) used in manual testing:</p>
+                <div class="table-container">
+                    <table class="metrics-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Description</th>
+                                <th>Formula / Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Test Case Coverage</strong></td>
+                                <td>Measures how much of the application's requirements are covered by test cases.</td>
+                                <td>(No. of Requirements Covered / Total Requirements) * 100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Test Execution Status</strong></td>
+                                <td>Tracks the progress of test execution.</td>
+                                <td>No. of Test Cases Passed / Failed / Blocked / Not Run</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Defect Density</strong></td>
+                                <td>The number of defects found in a specific module or release.</td>
+                                <td>(Total Defects Found / Size of Module)</td>
+                            </tr>
+                             <tr>
+                                <td><strong>Defect Leakage</strong></td>
+                                <td>The percentage of defects missed by the QA team and found by the end-user.</td>
+                                <td>(Defects Found in UAT / Defects Found in Testing) * 100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+             <!-- Quality Measurements Section -->
+            <section id="quality" class="content-section">
+                <h2>How Metrics Improve Quality</h2>
+                <p>By analyzing metrics, teams can:</p>
+                <ul>
+                    <li>Identify high-risk modules that have a high defect density.</li>
+                    <li>Measure the effectiveness of the testing process by tracking defect leakage.</li>
+                    <li>Make data-driven decisions about when to stop testing and release the product.</li>
+                    <li>Pinpoint areas for process improvement for future projects.</li>
+                </ul>
+            </section>
+
+            <!-- Interview Q&A Section -->
+            <section id="interview" class="content-section">
+                <h2>Interview Questions - Day 13</h2>
+                <div class="qa-item">
+                    <p class="question">Q: What are test metrics?</p>
+                    <p class="answer">A: Test metrics are quantitative measurements used to track and analyze the progress, quality, and effectiveness of the software testing process.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: What is the difference between metrics and KPIs?</p>
+                    <p class="answer">A: A metric is any quantitative measurement (e.g., number of defects). A KPI (Key Performance Indicator) is a specific metric that is tied to a strategic business goal (e.g., reducing defect leakage to under 5%). All KPIs are metrics, but not all metrics are KPIs.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: What is Defect Leakage and why is it important?</p>
+                    <p class="answer">A: Defect Leakage is the percentage of defects that were missed during the testing phase and later discovered by the end-users. It is a critical metric for measuring the effectiveness of the testing process.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: Which metrics are most useful in an Agile environment?</p>
+                    <p class="answer">A: In Agile, metrics that provide quick feedback are most useful. These include Sprint Burndown, Velocity, Defect Find Rate per sprint, and Test Pass/Fail rates within the sprint.</p>
+                </div>
+                <div class="qa-item">
+                    <p class="question">Q: What is a Test Summary Report?</p>
+                    <p class="answer">A: It is a formal document that summarizes the results of a testing cycle or project. It includes what was tested, the overall pass/fail status, a summary of defects found, and an assessment of software quality.</p>
+                </div>
+                 <div class="qa-item">
+                    <p class="question">Q: How do you decide when to stop testing?</p>
+                    <p class="answer">A: The decision is based on metrics. You might stop when test case execution is 100% complete with a 95% pass rate, when all critical defects are closed, and when the defect find rate has dropped to a predefined low level.</p>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section id="summary" class="content-section">
+                <div class="summary-section">
+                    <h2>Key Takeaways</h2>
+                    <ul>
+                        <li><strong>Test Reporting</strong> is essential for communicating testing progress and results to stakeholders.</li>
+                        <li><strong>Test Metrics</strong> are quantitative data points that help measure the quality and efficiency of testing.</li>
+                        <li>Key metrics include <strong>Test Coverage, Defect Density,</strong> and <strong>Defect Leakage</strong>.</li>
+                        <li>Analyzing metrics allows teams to make informed, data-driven decisions about software quality and release readiness.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <a href="Day12.html" class="nav-btn">&laquo; Previous: Day 12</a>
+            <a href="Day14.html" class="nav-btn">Next: Day 14 &raquo;</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <span class="footer-brand">Shaivi Connect</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
