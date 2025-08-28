@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 15 | Mini Project</title>
+    <style>
+        /* --- General & Desktop Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-size: 1.8em;
+        }
+        h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        .content-section p, .content-section ul {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 25px;
+        }
+        .test-case-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1em;
+        }
+        .test-case-table th, .test-case-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .test-case-table th {
+            background-color: #0056b3;
+            color: white;
+            font-weight: bold;
+        }
+        .test-case-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .summary-section {
+            background-color: #e9f5ff;
+            border-left: 5px solid #0056b3;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .nav-btn {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        .nav-btn.finish {
+            background-color: #28a745;
+        }
+        .nav-btn:hover {
+            background-color: #004494;
+        }
+        .nav-btn.finish:hover {
+            background-color: #218838;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .footer-brand {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* --- Responsive Styles for Mobile --- */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+                box-shadow: none;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            .content-section p, .content-section ul { font-size: 1em; }
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            .nav-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Day 15 - Mini Project: Hands-on Application</h1>
+        </header>
+
+        <main>
+            <!-- Introduction Section -->
+            <section id="introduction" class="content-section">
+                <h2>Project Introduction</h2>
+                <p>Welcome to the final day! The goal of this mini-project is to apply all the concepts you've learned over the past 14 days—from requirement analysis to test reporting—on a sample application. This hands-on experience is the best way to solidify your understanding and simulate real-world QA work.</p>
+            </section>
+
+            <!-- Project Overview -->
+            <section id="overview" class="content-section">
+                <h2>Project Overview: E-Commerce Application</h2>
+                <p>We will be testing the core user flow of a standard e-commerce website. The primary goal is to ensure a user can successfully log in, find a product, add it to their cart, and proceed to checkout.</p>
+            </section>
+
+            <!-- Step 1: Requirement Analysis -->
+            <section id="requirements" class="content-section">
+                <h2>Step 1: Requirement Analysis</h2>
+                <p>The core requirements for our test are:</p>
+                <ul>
+                    <li><strong>REQ-01:</strong> Users must be able to log in with a valid email and password.</li>
+                    <li><strong>REQ-02:</strong> Users must be able to search for products using a search bar.</li>
+                    <li><strong>REQ-03:</strong> Users must be able to add a product from the search results to their shopping cart.</li>
+                    <li><strong>REQ-04:</strong> Users must be able to view their cart and proceed to the checkout page.</li>
+                </ul>
+            </section>
+
+            <!-- Step 2: Test Scenarios -->
+            <section id="scenarios" class="content-section">
+                <h2>Step 2: High-Level Test Scenarios</h2>
+                <ul>
+                    <li><strong>TS-01:</strong> Verify Login Functionality (Positive and Negative).</li>
+                    <li><strong>TS-02:</strong> Verify Product Search Feature.</li>
+                    <li><strong>TS-03:</strong> Verify "Add to Cart" Functionality.</li>
+                    <li><strong>TS-04:</strong> Verify the Checkout Flow.</li>
+                </ul>
+            </section>
+
+            <!-- Step 3: Test Cases -->
+            <section id="test-cases" class="content-section">
+                <h2>Step 3: Sample Test Cases</h2>
+                <div class="table-container">
+                    <table class="test-case-table">
+                        <thead>
+                            <tr>
+                                <th>Test Case ID</th>
+                                <th>Test Scenario</th>
+                                <th>Steps</th>
+                                <th>Expected Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TC-LOGIN-01</td>
+                                <td>Verify successful login</td>
+                                <td>1. Navigate to login page.<br>2. Enter valid email.<br>3. Enter valid password.<br>4. Click 'Login'.</td>
+                                <td>User should be redirected to the dashboard/homepage.</td>
+                            </tr>
+                            <tr>
+                                <td>TC-LOGIN-02</td>
+                                <td>Verify unsuccessful login</td>
+                                <td>1. Navigate to login page.<br>2. Enter invalid email.<br>3. Enter invalid password.<br>4. Click 'Login'.</td>
+                                <td>An error message "Invalid credentials" should be displayed.</td>
+                            </tr>
+                            <tr>
+                                <td>TC-SEARCH-01</td>
+                                <td>Verify product search</td>
+                                <td>1. Login successfully.<br>2. Enter 'Laptop' in search bar.<br>3. Click 'Search'.</td>
+                                <td>A list of laptops should be displayed in the search results.</td>
+                            </tr>
+                            <tr>
+                                <td>TC-CART-01</td>
+                                <td>Verify 'Add to Cart'</td>
+                                <td>1. Search for a product.<br>2. Click 'Add to Cart' on a product.<br>3. Navigate to the cart page.</td>
+                                <td>The selected product should be visible in the shopping cart.</td>
+                            </tr>
+                             <tr>
+                                <td>TC-CHECKOUT-01</td>
+                                <td>Verify navigation to checkout</td>
+                                <td>1. Add an item to the cart.<br>2. Go to the cart page.<br>3. Click 'Proceed to Checkout'.</td>
+                                <td>User should be taken to the checkout page to enter shipping details.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Step 4: Test Execution -->
+            <section id="execution" class="content-section">
+                <h2>Step 4: Test Execution & Result Analysis</h2>
+                <p>During this phase, you would execute each test case step-by-step. For each one, you'd record the <strong>Actual Result</strong> and mark its status as <strong>Pass</strong> or <strong>Fail</strong>. If a test case fails, you would log a defect, assign it a severity and priority, and report it to the development team.</p>
+            </section>
+
+            <!-- Step 5: Deliverables -->
+            <section id="deliverables" class="content-section">
+                <h2>Step 5: Final Deliverables</h2>
+                <p>The key artifacts you would create during this project are:</p>
+                <ul>
+                    <li><strong>Requirements Traceability Matrix (RTM):</strong> To map requirements to test cases.</li>
+                    <li><strong>Test Plan:</strong> Outlining the strategy and scope.</li>
+                    <li><strong>Test Case Document:</strong> Containing all detailed test cases.</li>
+                    <li><strong>Bug Report:</strong> Detailed reports for each defect found.</li>
+                    <li><strong>Test Summary Report:</strong> A final report summarizing the entire testing effort and results.</li>
+                </ul>
+            </section>
+
+            <!-- Summary Section -->
+            <section id="summary" class="content-section">
+                <div class="summary-section">
+                    <h2>Congratulations & Key Takeaways</h2>
+                    <p>You have completed the 15-Day Manual Testing Challenge! 🎉</p>
+                    <ul>
+                        <li><strong>Practical Application is Key:</strong> Theory is important, but applying it solidifies your knowledge.</li>
+                        <li><strong>Documentation is Crucial:</strong> Clear test cases and bug reports are the foundation of effective QA.</li>
+                        <li><strong>You've Simulated Real Work:</strong> This project mirrors the day-to-day tasks of a manual tester.</li>
+                        <li><strong>Keep Learning:</strong> This is a great foundation. Continue exploring new tools, techniques, and automation concepts.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <a href="Day14.html" class="nav-btn">&laquo; Previous: Day 14</a>
+            <a href="#" class="nav-btn finish">Finish Challenge ★</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <span class="footer-brand">Shaivi Connect</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
