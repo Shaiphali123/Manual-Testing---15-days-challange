@@ -1,0 +1,239 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9 | Writing Test Cases</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        :root {
+            --primary-color: #6a0dad; /* A deep purple */
+            --secondary-color: #f3e5f5; /* A light, soft purple */
+            --accent-color: #ffc107; /* A bright yellow for highlights */
+            --text-color: #333;
+            --light-bg: #fafafa;
+            --card-bg: #fff;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .intro, .section, .qa-section, .navigation {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        .card {
+            background-color: var(--secondary-color);
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%236a0dad"><path d="M9 21.035l-9-8.638 2.768-2.833 6.232 5.867 14.232-13.914 2.768 2.833z"/></svg>') no-repeat left center;
+            background-size: 20px;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+        .qa-item {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 15px;
+        }
+        .qa-item:last-child {
+            border-bottom: none;
+        }
+        .qa-item strong {
+            color: var(--primary-color);
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .navigation a {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #5a0899;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Day 9 - Writing Test Cases</h1>
+    </header>
+
+    <div class="container">
+        
+        <section class="intro">
+            <p>Welcome to Day 9 of our Manual Testing Challenge! Today, we'll dive into one of the most fundamental skills for any tester: **writing test cases**. A test case is a set of actions executed to verify a particular feature or functionality of a software application. Writing clear and precise test cases ensures comprehensive testing and makes defect identification easier.</p>
+        </section>
+
+        <section class="section">
+            <h2>Structure of a Test Case</h2>
+            <p>A well-structured test case provides a clear, repeatable process for testing. Here are the key fields you'll find in most test case templates:</p>
+            <ul>
+                <li><strong>Test Case ID:</strong> A unique identifier for the test case (e.g., TC_001).</li>
+                <li><strong>Test Description:</strong> A brief, high-level description of what is being tested.</li>
+                <li><strong>Preconditions:</strong> The conditions that must be met before the test can be executed successfully.</li>
+                <li><strong>Test Steps:</strong> Step-by-step instructions to perform the test.</li>
+                <li><strong>Test Data:</strong> The specific data required to perform the steps (e.g., username, password).</li>
+                <li><strong>Expected Result:</strong> The predicted outcome if the functionality works as intended.</li>
+                <li><strong>Actual Result:</strong> The actual outcome observed after executing the test.</li>
+                <li><strong>Status:</strong> The final result of the test, typically "Pass" or "Fail."</li>
+                <li><strong>Remarks/Comments:</strong> Any additional information, observations, or bug references.</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2>Example of a Test Case</h2>
+            <p>Let's look at a simple example for a login functionality.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Case ID</th>
+                        <th>Test Description</th>
+                        <th>Preconditions</th>
+                        <th>Test Steps</th>
+                        <th>Test Data</th>
+                        <th>Expected Result</th>
+                        <th>Actual Result</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TC001</td>
+                        <td>Verify valid user login functionality</td>
+                        <td>User has a registered account and a stable internet connection.</td>
+                        <td>1. Navigate to the login page.<br>2. Enter a valid username.<br>3. Enter a valid password.<br>4. Click the 'Login' button.</td>
+                        <td>Username: user@example.com<br>Password: P@ssw0rd123</td>
+                        <td>The user should be successfully logged in and redirected to the dashboard.</td>
+                        <td>User was successfully logged in and redirected to the dashboard.</td>
+                        <td>Pass</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>Best Practices for Writing Test Cases</h2>
+            <div class="card">
+                <h3>Tips for Effective Test Cases</h3>
+                <ul>
+                    <li><strong>Write clear and concise steps:</strong> Each step should be simple and unambiguous.</li>
+                    <li><strong>Make test cases reusable:</strong> Design them in a way that they can be used for future regression testing.</li>
+                    <li><strong>Include valid and invalid scenarios:</strong> A good test suite covers both positive (valid) and negative (invalid) test cases.</li>
+                    <li><strong>Keep test data realistic:</strong> Use data that closely resembles what a real user would use.</li>
+                    <li><strong>Maintain a standard format:</strong> Use a consistent template across all test cases for easy readability and maintenance.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="qa-section">
+            <h2>Interview Questions - Day 9</h2>
+            <div class="qa-item">
+                <p><strong>Q: What is a test case?</strong></p>
+                <p><strong>A:</strong> A test case is a set of steps, inputs, and expected results used to verify a particular functionality of the software.</p>
+            </div>
+            <div class="qa-item">
+                <p><strong>Q: What are the key components of a test case?</strong></p>
+                <p><strong>A:</strong> The key components include Test Case ID, Description, Preconditions, Steps, Test Data, Expected Result, Actual Result, Status, and Remarks.</p>
+            </div>
+            <div class="qa-item">
+                <p><strong>Q: Why is writing good test cases important?</strong></p>
+                <p><strong>A:</strong> Good test cases ensure comprehensive testing, reduce defects, and make testing easier to track and reproduce.</p>
+            </div>
+            <div class="qa-item">
+                <p><strong>Q: What is the difference between a test case and a test scenario?</strong></p>
+                <p><strong>A:</strong> A test scenario is a high-level concept of what to test (e.g., "Verify login functionality"), while a test case provides detailed, step-by-step instructions for testing that scenario.</p>
+            </div>
+            <div class="qa-item">
+                <p><strong>Q: What are some best practices for writing test cases?</strong></p>
+                <p><strong>A:</strong> Key best practices include keeping steps clear and concise, including both valid and invalid scenarios, using realistic data, maintaining a standard format, and making test cases reusable.</p>
+            </div>
+        </section>
+
+        <div class="navigation">
+            <a href="Day8.html">← Previous: Defect Life Cycle</a>
+            <a href="Day10.html">Next: Test Reporting →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Shaivi Connect | 15-Day Manual Testing Challenge</p>
+    </footer>
+
+</body>
+</html>
+```
