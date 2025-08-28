@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8 | Test Case Design Techniques</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 40px 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--box-shadow);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .example-box {
+            background: #eef5ff;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: var(--secondary-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .qa-section .qa-item {
+            margin-bottom: 25px;
+        }
+
+        .qa-section h3 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        .qa-section p {
+            margin-top: 5px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Day 8 - Test Case Design Techniques</h1>
+        </header>
+
+        <section class="content-card">
+            <h2>Introduction</h2>
+            <p>
+                To perform effective and comprehensive software testing, it is crucial to design high-quality test cases. Simply creating test cases randomly is inefficient and often leads to gaps in testing. <strong>Test case design techniques</strong> are systematic approaches that help QA professionals create a set of effective and efficient test cases, ensuring that all critical areas of the software are covered without redundant testing.
+            </p>
+        </section>
+
+        <section class="content-card">
+            <h2>Types of Test Case Design Techniques</h2>
+            <p>
+                There are several techniques used to design test cases, each with its own purpose. These techniques can be broadly categorized into three types: Black-Box, White-Box, and Experience-Based. Here we focus on some of the most common ones.
+            </p>
+
+            <h3>Boundary Value Analysis (BVA)</h3>
+            <p>
+                This technique focuses on testing the values at the boundaries of valid input ranges. Bugs often occur at the edges, so testing these points is highly effective.
+            </p>
+            <div class="example-box">
+                <strong>Example:</strong> For a text box accepting values from 1 to 100, BVA would test the following values:
+                <ul>
+                    <li><strong>Lower Boundary:</strong> 0 (invalid), 1 (valid)</li>
+                    <li><strong>Upper Boundary:</strong> 100 (valid), 101 (invalid)</li>
+                </ul>
+            </div>
+
+            <h3>Equivalence Partitioning (EP)</h3>
+            <p>
+                EP divides the input data into partitions (groups) that are expected to behave similarly. Instead of testing every single value, you only test one value from each partition, assuming it represents the entire group.
+            </p>
+            <div class="example-box">
+                <strong>Example:</strong> An application requires the user's age. The age ranges are:
+                <ul>
+                    <li>1-18 (Child)</li>
+                    <li>19-60 (Adult)</li>
+                    <li>61-100 (Senior)</li>
+                </ul>
+                Using EP, you would select one test case from each valid partition (e.g., 10, 35, 75) and one from the invalid partitions (e.g., 0, 101).
+            </div>
+
+            <h3>Decision Table Testing</h3>
+            <p>
+                This technique is used for complex scenarios with multiple input conditions. It creates a table that shows all possible combinations of conditions and the corresponding actions, ensuring all logical rules are covered.
+            </p>
+
+            <h3>State Transition Testing</h3>
+            <p>
+                Used to test systems that have different states. Test cases are designed to test valid and invalid transitions between these states to ensure the system behaves correctly.
+            </p>
+
+            <h3>Use Case Testing</h3>
+            <p>
+                This technique derives test cases from "use cases," which describe how an actor (user) interacts with the system to achieve a specific goal. This approach is highly effective for testing real-world scenarios.
+            </p>
+
+            <h3>Error Guessing</h3>
+            <p>
+                This is an experience-based technique where the tester uses their knowledge and intuition to "guess" where defects might exist. It’s effective for finding defects that might be missed by formal techniques.
+            </p>
+        </section>
+
+        <section class="content-card">
+            <h2>Comparison of Techniques</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Technique</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Boundary Value Analysis (BVA)</strong></td>
+                        <td>Focuses on testing boundary values of input ranges.</td>
+                        <td>Test a password field accepting 6-12 characters with 5, 6, 12, and 13 characters.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equivalence Partitioning (EP)</strong></td>
+                        <td>Divides input data into partitions to reduce redundant test cases.</td>
+                        <td>Test a product review rating field (1-5 stars) with a single value from the valid partition (e.g., 3).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Decision Table Testing</strong></td>
+                        <td>Tests complex business rules with multiple conditions.</td>
+                        <td>Test login functionality based on combinations of correct/incorrect username and password.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-card qa-section">
+            <h2>Interview Questions - Day 8</h2>
+            <div class="qa-item">
+                <h3>Q: What is the purpose of test case design techniques?</h3>
+                <p><strong>A:</strong> They are used to create efficient and effective test cases that cover various scenarios while minimizing redundancy. They help ensure comprehensive and systematic testing.</p>
+            </div>
+            <div class="qa-item">
+                <h3>Q: Explain Boundary Value Analysis.</h3>
+                <p><strong>A:</strong> It's a black-box testing technique that focuses on testing input values at the extreme ends of valid and invalid ranges to find defects that often exist at these boundaries.</p>
+            </div>
+            <div class="qa-item">
+                <h3>Q: What is Equivalence Partitioning?</h3>
+                <p><strong>A:</strong> It's a technique that divides the input data into groups or partitions. You only need to test one representative value from each partition, as all values within a partition are expected to produce the same outcome.</p>
+            </div>
+            <div class="qa-item">
+                <h3>Q: How is a decision table useful in testing?</h3>
+                <p><strong>A:</strong> A decision table helps in systematically deriving test cases from a set of complex business rules. It maps all possible combinations of conditions to their corresponding actions, ensuring thorough test coverage of logical decisions.</p>
+            </div>
+            <div class="qa-item">
+                <h3>Q: What is error guessing in testing?</h3>
+                <p><strong>A:</strong> Error guessing is a testing technique where a tester uses their experience, knowledge, and intuition about common software vulnerabilities to anticipate and "guess" where defects are most likely to occur, and then designs test cases specifically for those areas.</p>
+            </div>
+        </section>
+
+        <div class="navigation">
+            <a href="Day7.html" class="nav-button">&larr; Previous: Day 7</a>
+            <a href="Day9.html" class="nav-button">Next: Day 9 &rarr;</a>
+        </div>
+
+        <footer>
+            <p>Made with ❤️ by Shaivi Connect</p>
+        </footer>
+    </div>
+
+</body>
+</html>
