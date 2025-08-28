@@ -1,0 +1,304 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7 | Bug & Defect Lifecycle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 40px 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--box-shadow);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: var(--secondary-color);
+        }
+
+        .diagram {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .diagram-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .diagram-step {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .diagram-flow .arrow {
+            color: var(--text-color);
+            font-size: 2rem;
+        }
+
+        .diagram-note {
+            font-style: italic;
+            color: #777;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .qa-section .qa-item {
+            margin-bottom: 25px;
+        }
+
+        .qa-section h3 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        .qa-section p {
+            margin-top: 5px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Day 7 - Bug & Defect Lifecycle</h1>
+        </header>
+
+        <section class="content-card">
+            <h2>Introduction</h2>
+            <p>
+                In the world of software development, nothing is perfect. Bugs and defects are an inevitable part of the process. Understanding how to manage them is key to delivering high-quality software. A <strong>defect</strong> is a deviation from the expected behavior of software, and managing these defects efficiently is crucial for quality delivery. The <strong>Bug Lifecycle</strong> is a systematic process that tracks a bug from the moment it's found until it's resolved and verified.
+            </p>
+        </section>
+
+        <section class="content-card">
+            <h2>Bug Lifecycle Stages</h2>
+            <p>
+                The bug lifecycle is a defined set of stages that a bug goes through from detection to closure. While the names might vary slightly, the core process remains the same across most organizations.
+            </p>
+            <div class="diagram">
+                <div class="diagram-flow">
+                    <div class="diagram-step">New</div>
+                    <div class="arrow">&rarr;</div>
+                    <div class="diagram-step">Assigned</div>
+                    <div class="arrow">&rarr;</div>
+                    <div class="diagram-step">Open</div>
+                    <div class="arrow">&rarr;</div>
+                    <div class="diagram-step">Fixed</div>
+                    <div class="arrow">&rarr;</div>
+                    <div class="diagram-step">Retest</div>
+                    <div class="arrow">&rarr;</div>
+                    <div class="diagram-step">Closed / Reopened</div>
+                </div>
+                <p class="diagram-note">Note: The exact flow can vary slightly between different organizations and their project management tools.</p>
+            </div>
+            <ul>
+                <li><strong>New:</strong> A bug is first logged by a tester and is awaiting review by a project manager or team lead.</li>
+                <li><strong>Assigned:</strong> The bug is assigned to a specific developer or development team to be fixed.</li>
+                <li><strong>Open:</strong> The developer has started analyzing the bug and is working on a solution.</li>
+                <li><strong>Fixed:</strong> The developer has completed the fix and marks the bug as ready for retesting by the QA team.</li>
+                <li><strong>Retest:</strong> The QA team retests the bug fix to ensure the original issue is resolved and no new issues have been introduced.</li>
+                <li><strong>Closed:</strong> If the bug is successfully verified as fixed, it is marked as closed.</li>
+                <li><strong>Reopened:</strong> If the bug still persists after retesting, the tester reopens it and sends it back to the developer for further attention.</li>
+            </ul>
+        </section>
+
+        <section class="content-card">
+            <h2>Severity vs Priority</h2>
+            <p>
+                When a bug is found, it's important to categorize it based on two key attributes: <strong>severity</strong> and <strong>priority</strong>.
+            </p>
+            <ul>
+                <li><strong>Severity:</strong> The impact of the bug on the system or application. It measures "how bad" the bug is.</li>
+                <li><strong>Priority:</strong> The urgency of fixing the bug. It determines "how soon" the bug needs to be fixed.</li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Severity</th>
+                        <th>Priority</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Critical</strong></td>
+                        <td>High</td>
+                        <td>The system crashes or a major feature is completely unusable. Must be fixed immediately.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Major</strong></td>
+                        <td>Medium</td>
+                        <td>Significant functionality is impacted, but the system is still usable. Fix is required soon.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Minor</strong></td>
+                        <td>Low</td>
+                        <td>A cosmetic issue or a very minor bug that doesn't impact core functionality. Can be fixed in later releases.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-card qa-section">
+            <h2>Interview Questions - Day 7</h2>
+            <div class="qa-item">
+                <h3>Q: What is a bug in software testing?</h3>
+                <p><strong>A:</strong> A bug is a defect, error, or fault in a software program that causes it to produce an incorrect or unexpected result.</p>
+            </div>
+            <div class="qa-item">
+                <h3>Q: Explain the bug lifecycle.</h3>
+                <p><strong>A:</strong> The bug lifecycle is a series of states a bug goes through from discovery to resolution. The typical stages are: New → Assigned → Open → Fixed → Retest → Closed/Reopened.</p>
+            </div>
+            <div class="qa-item">
+                <h3>Q: What is the difference between severity and priority?</h3>
+                <p><strong>A:</strong> Severity is the impact a bug has on the system (how bad it is), while priority is the urgency of fixing the bug (how soon it needs to be fixed).</p>
+            </div>
+            <div class="qa-item">
+                <h3>Q: What happens when a bug is reopened?</h3>
+                <p><strong>A:</strong> A bug is reopened when a retest shows that the issue was not fixed properly by the developer and the bug still persists. It is then sent back to the developer for further attention.</p>
+            </div>
+            <div class="qa-item">
+                <h3>Q: Why is tracking the bug lifecycle important?</h3>
+                <p><strong>A:</strong> It ensures that all defects are managed and resolved systematically. This process improves software quality, enhances team efficiency, and provides clear visibility into the status of each bug.</p>
+            </div>
+        </section>
+
+        <div class="navigation">
+            <a href="Day6.html" class="nav-button">&larr; Previous: Day 6</a>
+            <a href="Day8.html" class="nav-button">Next: Day 8 &rarr;</a>
+        </div>
+
+        <footer>
+            <p>Made with ❤️ by Shaivi Connect</p>
+        </footer>
+    </div>
+
+</body>
+</html>
+```
