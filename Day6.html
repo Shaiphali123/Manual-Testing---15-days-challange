@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6 | Types of Testing - Functional & Non-Functional</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+            text-align: center;
+        }
+        h1 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #e9f0f6;
+            border-left: 5px solid #007bff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .qa-section {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .question {
+            font-weight: 600;
+            color: #d9534f;
+            margin-top: 15px;
+        }
+        .answer {
+            font-style: italic;
+            margin-left: 20px;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+        .navigation a {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Day 6 - Types of Testing</h1>
+
+        <div class="card">
+            <h2>Introduction</h2>
+            <p>Testing is a crucial phase in the software development lifecycle. It's the process of evaluating a software product to check if it meets specified requirements and to identify defects. Understanding different testing types helps ensure software quality and reliability.</p>
+            <p>Software testing is broadly categorized into two main types: <strong>Functional Testing</strong> and <strong>Non-Functional Testing</strong>.</p>
+        </div>
+
+        <div class="card">
+            <h2>Functional Testing</h2>
+            <p><strong>Functional Testing</strong> verifies that the software behaves according to the specified requirements. It focuses on 'what' the system does, checking all the functionalities and features of the application.</p>
+            <ul>
+                <li><strong>Unit Testing:</strong> Tests individual components or units of a software to validate that each unit works as designed.
+                    <br><em>Example: Testing a single function that calculates a user's age based on their date of birth.</em></li>
+                <li><strong>Integration Testing:</strong> Tests the interfaces between components to ensure that they work together correctly.
+                    <br><em>Example: Testing the interaction between a login module and a dashboard module to ensure a user can access their account after successful login.</em></li>
+                <li><strong>System Testing:</strong> Tests the complete and integrated software system to evaluate its compliance with the specified requirements.
+                    <br><em>Example: Testing the entire e-commerce website, from product search to checkout, as a whole.</em></li>
+                <li><strong>User Acceptance Testing (UAT):</strong> A final phase of testing where the end-users or clients verify if the system meets their needs.
+                    <br><em>Example: The client tests the new CRM system to ensure it's ready for deployment in their business environment.</em></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Non-Functional Testing</h2>
+            <p><strong>Non-Functional Testing</strong> validates software attributes like performance, usability, and security. It focuses on 'how' the system operates, checking its reliability, efficiency, and robustness.</p>
+            <ul>
+                <li><strong>Performance Testing:</strong> Evaluates how a system performs in terms of responsiveness and stability under a particular workload.
+                    <br><em>Example: Checking the response time of a web page when 100 users are accessing it simultaneously.</em></li>
+                <li><strong>Load Testing:</strong> A sub-type of performance testing that checks the system's behavior under expected load.
+                    <br><em>Example: Simulating 5,000 concurrent users on a website to see if it remains stable.</em></li>
+                <li><strong>Stress Testing:</strong> A sub-type of performance testing that pushes the system beyond its normal operating capacity to see how it handles extreme loads.
+                    <br><em>Example: Simulating 10,000 concurrent users to find the breaking point of the system.</em></li>
+                <li><strong>Security Testing:</strong> Checks the system for vulnerabilities and threats to protect data from potential attacks.
+                    <br><em>Example: Verifying that a website is resistant to SQL injection or Cross-Site Scripting (XSS) attacks.</em></li>
+                <li><strong>Usability Testing:</strong> Measures how easy and intuitive the software is to use.
+                    <br><em>Example: Observing users interacting with a mobile app to see if they can easily navigate and complete tasks.</em></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Other Types of Testing</h2>
+            <p>Apart from the main categories, there are several other important testing types:</p>
+            <ul>
+                <li><strong>Smoke Testing:</strong> A quick, preliminary test to ensure the most basic and critical functionalities are working after a new build is deployed. It's a "go/no-go" decision.</li>
+                <li><strong>Sanity Testing:</strong> A subset of regression testing that checks a specific, small part of the application after a minor change to ensure the change works and hasn't broken anything else in its immediate vicinity.</li>
+                <li><strong>Regression Testing:</strong> Verifies that recent code changes (e.g., bug fixes, new features) have not broken or negatively affected existing functionalities.</li>
+                <li><strong>Exploratory Testing:</strong> A hands-on, unscripted testing approach where the tester learns about the application while testing it. It's about exploring the software to find new issues.</li>
+            </ul>
+        </div>
+
+        <div class="qa-section">
+            <h2>Interview Questions - Day 6</h2>
+            <div class="question">Q: What is the difference between functional and non-functional testing?</div>
+            <div class="answer">A: Functional testing verifies the software functionality and what it does, while non-functional testing checks performance, usability, security, and how it performs.</div>
+            
+            <div class="question">Q: Name 3 types of functional testing.</div>
+            <div class="answer">A: Unit Testing, Integration Testing, System Testing.</div>
+            
+            <div class="question">Q: What is regression testing?</div>
+            <div class="answer">A: It verifies that recent code changes have not broken existing functionality.</div>
+            
+            <div class="question">Q: What is the difference between smoke and sanity testing?</div>
+            <div class="answer">A: Smoke testing is a quick check of basic functionality after a new build, whereas sanity testing is a focused check of specific functionality after a minor change or bug fix.</div>
+            
+            <div class="question">Q: Why is non-functional testing important?</div>
+            <div class="answer">A: It ensures software reliability, performance, security, and user satisfaction, which are crucial for the long-term success and adoption of the software.</div>
+        </div>
+
+        <div class="navigation">
+            <a href="Day5.html">← Day 5: SDLC & STLC</a>
+            <a href="Day7.html">Day 7: Test Cases & Test Scenarios →</a>
+        </div>
+        
+        <div class="footer">
+            <p>© Shaivi Connect</p>
+        </div>
+    </div>
+
+</body>
+</html>
